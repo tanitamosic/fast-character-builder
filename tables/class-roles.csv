@@ -1,0 +1,58 @@
+,blaster,controller,defender,face,healer,librarian,scout,striker,support,utility
+artificer,,,x,,x,x,,,x,x
+artificer alchemist,x,,,,x,x,,,x,x
+artificer artillerist,x,x,,,,,,x,x,
+barbarian ,,,x,,,,,x,,
+barbarian beast,,x,x,,,,,x,,x
+barbarian berserker,,x,x,,,,,x,,
+barbarian totem warrior,,x,x,,,,,x,x,
+barbarian zealot,,x,x,,,,,x,,
+bard,,x,,x,x,,,,x,x
+bard lore,,x,,x,x,,,x,x,x
+bard valor,x,x,,x,,,,x,x,
+bard glamour,,x,,x,,,,,x,
+cleric,x,,x,,x,,,x,x,x
+cleric life,,,x,,x,,,,x,x
+cleric tempest,x,x,x,,x,,,x,,
+cleric war,,x,x,,x,,,x,,x
+cleric knowledge,,x,,,x,x,,,x,x
+druid,x,x,,,x,,,,x,x
+druid moon,,,x,,,,x,x,,x
+druid land,,x,,,x,x,,,,x
+druid dreams,,,,,x,x,x,,x,x
+fighter,,,x,,,,,x,,
+fighter champion,,x,x,,,,x,x,,
+fighter battle master,,x,x,,,,,x,x,x
+fighter eldrich knight,x,,x,,,,x,x,,x
+monk,,,,,,,x,x,,
+monk drunken master,,x,x,,,,x,x,,x
+monk kensei,,x,x,,,,x,x,,x
+monk open hand,,x,x,,,,,x,,x
+paladin,x,,,x,x,,,x,x,
+paladin ancients,,,x,x,x,,,x,x,
+paladin devotion,,,x,x,x,,,x,x,
+ranger,,,x,,,,x,x,,
+ranger hunter,x,x,x,,,,x,x,,
+ranger gloom stalker,x,,,,,,x,x,,
+ranger horizon walker,,,x,,,,x,x,,
+rogue,,,,x,,,x,x,,
+rogue assassin,,,,x,,,x,x,,
+rogue arcane trickster,,x,,,,,x,x,,
+rogue swashbuckler,,x,,x,,,x,x,x,
+rogue theif,,x,,x,,,x,x,,
+sorcerer,x,x,,x,,,,x,x,x
+sorcerer draconic,x,x,,x,,,,x,,x
+sorcerer divine soul,x,x,,,x,,,,x,x
+sorcerer shadow magic,x,x,,,,,,x,,x
+sorcerer wild magic,x,x,,x,,,,,,x
+warlock,x,x,,x,,,,x,,
+warlock archfey,,x,,x,,,x,,x,
+warlock fiend,,x,,,,,,x,,
+warlock great old one,,x,,x,,x,x,,,
+wizard,x,x,,,,x,,x,x,x
+wizard evocation,x,x,x,,,x,,,,x
+wizard abjuration,,x,x,,x,x,,,,x
+wizard conjuration,,x,x,,,x,x,,,x
+wizard divination,,x,x,,,x,,x,x,x
+wizard war magic,,x,,,,x,,x,x,
+wizard necromancy,x,x,,,,x,,x,,x

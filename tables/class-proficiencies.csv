@@ -1,0 +1,14 @@
+class,acrobatics,animal_handling,arcana,athletics,deception,history,insight,intimidation,investigation,medicine,nature,perception,performance,persuasion,religion,sleigh_of_hand,stealth,survival
+artificer,,,x,,,x,,,x,x,x,x,,,,,,
+barbarian,,x,,x,,,,x,,,x,x,,,,,,x
+bard,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+cleric,,,,,,x,x,,,x,,,,x,x,,,
+druid,,x,x,,,,x,,,x,x,x,,,x,,,x
+fighter,x,x,,x,,x,x,x,,,,x,,,,,,x
+monk,x,,,x,,x,x,,,,,,,,x,,x,
+paladin,,,,x,,,x,x,,x,,,,x,x,,,
+ranger,,x,,x,,,x,,x,,x,x,,,,,x,x
+rogue,x,,,x,x,,x,x,x,,,x,x,x,,x,x,
+sorcerer,,,x,,x,,x,x,,,,,,x,x,,,
+warlock,,,x,,x,x,,x,x,,x,,,,x,,,
+wizard,,,x,,,x,x,,x,x,,,,,x,,,

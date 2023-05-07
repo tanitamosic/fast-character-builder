@@ -1,0 +1,14 @@
+class,prof-count,expertise
+artificer,2,0
+barbarian,2,0
+bard,3,2
+cleric,2,1
+druid,2,0
+fighter,2,0
+monk,2,0
+paladin,2,0
+ranger,3,0
+rogue,4,3
+sorcerer,2,0
+warlock,2,0
+wizard,2,0

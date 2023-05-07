@@ -1,0 +1,14 @@
+class,strength,dexterity,constitution,intelligence,wisdom,charisma
+artificer,8,14,13,15,12,10
+barbarian,15,13,14,8,12,10
+bard,8,14,13,12,10,15
+cleric,12,13,14,10,15,8
+druid,10,13,14,12,15,8
+fighter,15,12,14,10,13,8
+monk,12,15,14,10,13,8
+paladin,14,8,13,10,12,15
+ranger,10,15,14,12,13,8
+rogue,8,15,13,14,12,10
+sorcerer,8,13,14,12,10,15
+warlock,8,13,14,12,10,15
+wizard,8,13,14,15,12,10
