@@ -1,9 +1,9 @@
 
 import fastbuilder.app.model.CharSheet
 import fastbuilder.app.model.enums.Race;
-import fastbuilder.kjar.model.RaceParams;
-import fastbuilder.kjar.model.race.SkintoneCategory;
-import fastbuilder.kjar.model.race.Skintone;
+import fastbuilder.app.model.RaceParams;
+import fastbuilder.app.model.race.SkintoneCategory;
+import fastbuilder.app.model.race.Skintone;
 import fastbuilder.app.model;
 dialect  "mvel"
 

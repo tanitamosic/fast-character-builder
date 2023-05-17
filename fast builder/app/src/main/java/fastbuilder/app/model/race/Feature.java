@@ -1,4 +1,4 @@
-package fastbuilder.kjar.model.race;
+package fastbuilder.app.model.race;
 
 public enum Feature {
     POINTY_EARS,

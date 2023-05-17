@@ -1,6 +1,6 @@
-package fastbuilder.kjar.model;
+package fastbuilder.app.model;
 
-import fastbuilder.kjar.model.race.*;
+import fastbuilder.app.model.race.*;
 
 import java.util.List;
 
