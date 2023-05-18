@@ -1,0 +1,273 @@
+
+import fastbuilder.app.model.CharSheet;
+import fastbuilder.app.model.BackgroundParams;
+import fastbuilder.app.model.background.PathInLife;
+import fastbuilder.app.model.background.Interest;
+import fastbuilder.app.model.background.WayOfLife;
+import fastbuilder.app.model.enums.Background;
+dialect  "mvel"
+
+// LONER
+rule "wayoflife_loner"
+no-loop true
+salience 50
+    when
+        BackgroundParams(wayOfLife=="LONER")
+    then
+end
+
+rule "interest_city"
+no-loop true
+salience 75
+    when
+        BackgroundParams(wayOfLife=="LONER" && interest=="CITY_DWELLING")
+    then
+end
+
+rule "CRIMINAL" // pathinlife==violence
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="LONER" && interest=="CITY_DWELLING" && path=="VIOLENCE")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.CRIMINAL)};
+end
+
+rule "URCHIN" // pathinlife==pickpocketing
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="LONER" && interest=="CITY_DWELLING" && path=="PICKPOCKETING")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.URCHIN)};
+end
+
+rule "CHARLATAN" // pathinlife==swindling
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="LONER" && interest=="CITY_DWELLING" && path=="SWINDLING")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.CHARLATAN)};
+end
+
+rule "HERMIT" // interest==nature, path==null
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="LONER" && interest=="NATURE_DWELLING")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.HERMIT)};
+end
+
+
+// ORGANIZATION MEMBER
+rule "wayoflife_org_member"
+no-loop true
+salience 50
+    when
+        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER")
+    then
+end
+
+rule "interest_artistic"
+no-loop true
+salience 75
+    when
+        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="ARTISTIC")
+    then
+end
+
+rule "ENTERTAINER" // path==performer
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="ARTISTIC" && path=="PERFORMER")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.ENTERTAINER)};
+end
+
+rule "GUILD_ARTISAN" // path==PERFORMER
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="ARTISTIC" && path=="CRAFTSMAN")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.GUILD_ARTISAN)};
+end
+
+rule "ACOLYTE" // interest==religious
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="RELIGIOUS")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.ACOLYTE)};
+end
+
+rule "interest_violent"
+no-loop true
+salience 75
+    when
+        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="VIOLENT")
+    then
+end
+
+rule "SOLIDER" // path=law_obeying
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="VIOLENT" && path=="LAW_OBEYING")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.SOLIDER)};
+end
+
+rule "CRIMINAL"
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="VIOLENT" && path=="LAW_BREAKING")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.CRIMINAL)};
+end
+
+
+// ONE PLACE
+rule "wayoflife_one_place"
+no-loop true
+salience 50
+    when
+        BackgroundParams(wayOfLife=="ONE_PLACE")
+    then
+end
+
+rule "interest_spiritual"
+no-loop true
+salience 75
+    when
+        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="SPIRITUAL")
+    then
+end
+
+rule "interest_academic"
+no-loop true
+salience 75
+    when
+        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="ACADEMIC")
+    then
+end
+
+rule "ACOLYTE"
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="SPIRITUAL" && path="TEMPLE_LIFE")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.ACOLYTE)};
+end
+
+rule "HERMIT"
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="SPIRITUAL" && path="ISOLATED_LIFE")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.HERMIT)};
+end
+
+rule "SAGE"
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="ACADEMIC" && path="DEDICATED")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.SAGE)};
+end
+
+rule "NOBLE"
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="ACADEMIC" && path="HIGHBORN")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.NOBLE)};
+end
+
+
+// WANDERING SPIRIT
+rule "wayoflife_wanderer"
+no-loop true
+salience 50
+    when
+        BackgroundParams(wayOfLife=="WANDERING_SPIRIT")
+    then
+end
+
+rule "interest_famous"
+no-loop true
+salience 75
+    when
+        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="FAMOUS")
+    then
+end
+
+rule "ENTERTAINER"
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="FAMOUS" && path="TALENTED_PERFORMER")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.ENTERTAINER)};
+end
+
+rule "FOLK_HERO"
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="FAMOUS" && path="BRAVE_HERO")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.FOLK_HERO)};
+end
+
+rule "interest_secluded"
+no-loop true
+salience 75
+    when
+        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="SECLUDED")
+    then
+end
+
+rule "OUTLANDER"
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="SECLUDED" && path="THE_WILDS")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.OUTLANDER)};
+end
+
+rule "SAILOR"
+no-loop true
+salience 100
+    when
+        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="SECLUDED" && path="THE_SEA")
+        $cs: CharSheet()
+    then
+        modify($cs){$cs.setBackground(Background.SAILOR)};
+end

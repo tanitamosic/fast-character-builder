@@ -12,6 +12,6 @@ public enum Background {
     OUTLANDER,
     SAGE,
     SAILOR,
-    SOLDIER,
+    SOLIDER,
     URCHIN
 }

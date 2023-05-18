@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fastbuilder</groupId>
-	<artifactId>kjar</artifactId>
+	<artifactId>service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>kjar</name>
+	<name>service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -20,7 +20,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -56,6 +56,11 @@
 		<dependency>
 			<groupId>fastbuilder</groupId>
 			<artifactId>app</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>fastbuilder</groupId>
+			<artifactId>kjar</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
