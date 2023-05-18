@@ -99,7 +99,7 @@ salience 140
 end
 
 rule "height_medium"
-salience 200
+salience 100
     when
         RaceParams(size=="MEDIUM")
     then
@@ -107,7 +107,7 @@ salience 200
 end
 
 rule "medium_unnatural"
-salience 210
+salience 110
     when
         RaceParams(size=="MEDIUM", category=="UNNATURAL")
     then
@@ -115,7 +115,7 @@ salience 210
 end
 
 rule "medium_unnatural_lean"
-salience 211
+salience 111
     when
         RaceParams(size=="MEDIUM", category=="UNNATURAL", build=="LEAN")
     then
@@ -123,7 +123,7 @@ salience 211
 end
 
 rule "medium_half-drow"
-salience 212
+salience 112
     when
         RaceParams(size=="MEDIUM", category=="UNNATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.HORNS
@@ -135,7 +135,7 @@ salience 212
 end
 
 rule "medium_tiefling"
-salience 213
+salience 113
     when
         RaceParams(size=="MEDIUM", category=="UNNATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.HORNS
@@ -147,7 +147,7 @@ salience 213
 end
 
 rule "medium_unnatural_half-orc"
-salience 220
+salience 120
     when
         RaceParams(size=="MEDIUM", category="UNNATURAL", build == "STOCKY" || build == "BROAD")
     then
@@ -157,7 +157,7 @@ salience 220
 end
 
 rule "medium_unnatural_drow"
-salience 230
+salience 130
     when
         RaceParams(size=="MEDIUM", category="UNNATURAL", build == "SLIGHT")
     then
@@ -168,7 +168,7 @@ end
 
 
 rule "medium_natural"
-salience 240
+salience 140
     when
         RaceParams(size=="MEDIUM", category=="NATURAL")
     then
@@ -176,7 +176,7 @@ salience 240
 end
 
 rule "medium_natural_lean"
-salience 241
+salience 141
     when
         RaceParams(size=="MEDIUM", category=="NATURAL", build == "LEAN")
     then
@@ -184,7 +184,7 @@ salience 241
 end
 
 rule "medium_half-elf"
-salience 242
+salience 142
      when
         RaceParams(size=="MEDIUM", category=="NATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.POINTY_EARS
@@ -196,7 +196,7 @@ salience 242
 end
 
 rule "medium_human"
-salience 243
+salience 143
     when
         RaceParams(size=="MEDIUM", category=="NATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.POINTY_EARS
@@ -208,7 +208,7 @@ salience 243
 end
 
 rule "medium_natural_broad"
-salience 250
+salience 150
     when
         RaceParams(size=="MEDIUM", category=="NATURAL", build == "BROAD")
     then
@@ -218,7 +218,7 @@ salience 250
 end
 
 rule "medium_natural_slight"
-salience 251
+salience 151
     when
         RaceParams(size=="MEDIUM", category=="NATURAL", build == "SLIGHT")
     then
@@ -229,7 +229,7 @@ end
 
 
 rule "height_tall"
-salience 300
+salience 100
     when
         RaceParams(size=="TALL")
     then
