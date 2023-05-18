@@ -9,7 +9,7 @@ dialect  "mvel"
 
 ## OBRNI SALIANCE ZA SVE
 rule "height_short"
-salience 199
+salience 100
     when
         RaceParams(size=="SHORT")
     then
@@ -17,7 +17,7 @@ salience 199
 end
 
 rule "short_meek_mischevious"
-salience 190
+salience 110
     when
         RaceParams(size=="SHORT" && (disposition == "MEEK" || disposition == "MISCHEVIOUS"))
     then
@@ -25,7 +25,7 @@ salience 190
 end
 
 rule "goblin"
-salience 189
+salience 111
     when
         RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS", category=="UNNATURAL")
     then
@@ -35,7 +35,7 @@ salience 189
 end
 
 rule "halfling_m"
-salience 188
+salience 112
     when
         RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS", category=="NATRUAL")
     then
@@ -45,7 +45,7 @@ salience 188
 end
 
 rule "short_hardowrking"
-salience 180
+salience 120
     when
         RaceParams(size=="SHORT" && disposition == "HARDWORKING")
     then
@@ -53,7 +53,7 @@ salience 180
 end
 
 rule "short_hardowrking_dwarf"
-salience 179
+salience 121
     when
         $bp: RaceParams(size=="SHORT" && disposition == "HARDWORKING", $features: features)
         $targetFeature: Feature.POINTY_EARS
@@ -65,7 +65,7 @@ salience 179
 end
 
 rule "short_hardowrking_gnome"
-salience 178
+salience 122
     when
         RaceParams(size=="SHORT" && disposition == "HARDWORKING", $features: features)
         $targetFeature: Feature.POINTY_EARS
@@ -77,7 +77,7 @@ salience 178
 end
 
 rule "short_chill_gentle"
-salience 170
+salience 130
     when
         RaceParams(size=="SHORT", disposition == "CHILL" || disposition == "GENTLE")
     then
@@ -88,7 +88,7 @@ salience 170
 end
 
 rule "short_gruff_snobby"
-salience 160
+salience 140
     when
         RaceParams(size=="SHORT", disposition == "GRUFF" || disposition == "SNOBBY")
     then
@@ -99,7 +99,7 @@ salience 160
 end
 
 rule "height_medium"
-salience 299
+salience 200
     when
         RaceParams(size=="MEDIUM")
     then
@@ -107,7 +107,7 @@ salience 299
 end
 
 rule "medium_unnatural"
-salience 290
+salience 210
     when
         RaceParams(size=="MEDIUM", category=="UNNATURAL")
     then
@@ -115,7 +115,7 @@ salience 290
 end
 
 rule "medium_unnatural_lean"
-salience 289
+salience 211
     when
         RaceParams(size=="MEDIUM", category=="UNNATURAL", build=="LEAN")
     then
@@ -123,7 +123,7 @@ salience 289
 end
 
 rule "medium_half-drow"
-salience 288
+salience 212
     when
         RaceParams(size=="MEDIUM", category=="UNNATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.HORNS
@@ -134,8 +134,8 @@ salience 288
         insert(cs);
 end
 
-rule "medium_half-drow"
-salience 288
+rule "medium_tiefling"
+salience 213
     when
         RaceParams(size=="MEDIUM", category=="UNNATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.HORNS
@@ -147,7 +147,7 @@ salience 288
 end
 
 rule "medium_unnatural_half-orc"
-salience 279
+salience 220
     when
         RaceParams(size=="MEDIUM", category="UNNATURAL", build == "STOCKY" || build == "BROAD")
     then
@@ -157,7 +157,7 @@ salience 279
 end
 
 rule "medium_unnatural_drow"
-salience 269
+salience 230
     when
         RaceParams(size=="MEDIUM", category="UNNATURAL", build == "SLIGHT")
     then
@@ -176,7 +176,7 @@ salience 240
 end
 
 rule "medium_natural_lean"
-salience 239
+salience 241
     when
         RaceParams(size=="MEDIUM", category=="NATURAL", build == "LEAN")
     then
@@ -184,7 +184,7 @@ salience 239
 end
 
 rule "medium_half-elf"
-salience 238
+salience 242
      when
         RaceParams(size=="MEDIUM", category=="NATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.POINTY_EARS
@@ -196,7 +196,7 @@ salience 238
 end
 
 rule "medium_human"
-salience 237
+salience 243
     when
         RaceParams(size=="MEDIUM", category=="NATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.POINTY_EARS
@@ -208,7 +208,7 @@ salience 237
 end
 
 rule "medium_natural_broad"
-salience 229
+salience 250
     when
         RaceParams(size=="MEDIUM", category=="NATURAL", build == "BROAD")
     then
@@ -218,7 +218,7 @@ salience 229
 end
 
 rule "medium_natural_slight"
-salience 219
+salience 251
     when
         RaceParams(size=="MEDIUM", category=="NATURAL", build == "SLIGHT")
     then
@@ -229,7 +229,7 @@ end
 
 
 rule "height_tall"
-salience 399
+salience 300
     when
         RaceParams(size=="TALL")
     then
@@ -238,7 +238,7 @@ end
 
 
 rule "tall_gruff"
-salience 389
+salience 310
     when
         RaceParams(size=="TALL", disposition=="GRUFF")
     then
@@ -246,7 +246,7 @@ salience 389
 end
 
 rule "tall_dragonborn"
-salience 399
+salience 311
     when
         $rp: RaceParams(size=="TALL", disposition=="GRUFF", build=="STOCKY" || build=="LEAN")
     then
@@ -257,7 +257,7 @@ salience 399
 end
 
 rule "tall_goliath"
-salience 398
+salience 312
     when
         $rp: RaceParams(size=="TALL", disposition=="GRUFF", build=="BROAD")
     then
@@ -269,7 +269,7 @@ salience 398
 end
 
 rule "tall_firbolg"
-salience 289
+salience 220
     when
         RaceParams(size=="TALL", disposition=="GENTLE" || disposition == "CHILL")
     then
@@ -279,7 +279,7 @@ salience 289
 end
 
 rule "tall_snobby_dragonborn"
-salience 279
+salience 230
     when
         $rp: RaceParams(size=="TALL", disposition=="SNOBBY")
     then
@@ -290,9 +290,9 @@ salience 279
 end
 
 rule "tall_hardworking_dragonborn"
-salience 279
+salience 231
     when
-        $rp: RaceParams(size=="TALL", disposition=="SNOBBY")
+        $rp: RaceParams(size=="TALL", disposition=="HARDWORKING")
     then
         CharSheet cs = new CharSheet();
         cs.setRace(Race.DRAGONBORN);
@@ -301,7 +301,7 @@ salience 279
 end
 
 rule "natural_skintone"
-salience 50
+salience 10
     when
         $cs: CharSheet(race=="HALFLING" || race=="HUMAN" || race=="DWARF" ||
         race=="ELF" || race=="HALF_ELF" || race=="AASIMAR")
@@ -310,7 +310,7 @@ salience 50
 end
 
 rule "underdark_skintone"
-salience 40
+salience 20
     when
         $cs: CharSheet(race=="DROW" || race=="DUEARGAR" || race=="HALF-DROW")
     then
@@ -318,7 +318,7 @@ salience 40
 end
 
 rule "chromatic_scales_skintone"
-salience 35
+salience 30
     when
         $rp: RaceParams(category=="CHROMATIC_SCALES")
     then
@@ -326,7 +326,7 @@ salience 35
 end
 
 rule "metallic_scales_skintone"
-salience 30
+salience 35
     when
         $rp: RaceParams(category=="METALLIC_SCALES")
     then
@@ -334,7 +334,7 @@ salience 30
 end
 
 rule "firbolg_skintone"
-salience 35
+salience 40
     when
         $cs: CharSheet(race=="FIRBOLG")
     then
@@ -342,7 +342,7 @@ salience 35
 end
 
 rule "tiefling_skintone"
-salience 33
+salience 50
     when
         $cs: CharSheet(race=="TIEFLING")
     then
@@ -350,7 +350,7 @@ salience 33
 end
 
 rule "goblin_skintone"
-salience 32
+salience 60
     when
         $cs: CharSheet(race=="GOBLIN" || race =="HALF_ORC")
     then
