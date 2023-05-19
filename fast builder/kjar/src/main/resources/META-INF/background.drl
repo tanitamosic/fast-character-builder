@@ -5,6 +5,9 @@ import fastbuilder.app.model.background.PathInLife;
 import fastbuilder.app.model.background.Interest;
 import fastbuilder.app.model.background.WayOfLife;
 import fastbuilder.app.model.enums.Background;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 dialect  "mvel"
 
 // LONER
@@ -14,6 +17,7 @@ salience 50
     when
         BackgroundParams(wayOfLife=="LONER")
     then
+        insert(new ArrayList<Interest>(Arrays.asList(Interest.CITY_DWELLING, Interest.NATURE_DWELLING)));
 end
 
 rule "interest_city"
@@ -22,6 +26,7 @@ salience 75
     when
         BackgroundParams(wayOfLife=="LONER" && interest=="CITY_DWELLING")
     then
+        insert(new ArrayList<PathInLife>(Arrays.asList(PathInLife.VIOLENCE, PathInLife.PICKPOCKETING, PathInLife.SWINDLING)));
 end
 
 rule "CRIMINAL" // pathinlife==violence
@@ -72,6 +77,7 @@ salience 50
     when
         BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER")
     then
+        insert(new ArrayList<Interest>(Arrays.asList(Interest.ARTISTIC, Interest.RELIGIOUS, Interest.VIOLENT)));
 end
 
 rule "interest_artistic"
@@ -80,6 +86,7 @@ salience 75
     when
         BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="ARTISTIC")
     then
+        insert(new ArrayList<PathInLife>(Arrays.asList(PathInLife.PERFORMER, PathInLife.CRAFTSMAN)));
 end
 
 rule "ENTERTAINER" // path==performer
@@ -118,6 +125,7 @@ salience 75
     when
         BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="VIOLENT")
     then
+        insert(new ArrayList<PathInLife>(Arrays.asList(PathInLife.LAW_OBEYING, PathInLife.LAW_BREAKING)));
 end
 
 rule "SOLIDER" // path=law_obeying
@@ -148,6 +156,7 @@ salience 50
     when
         BackgroundParams(wayOfLife=="ONE_PLACE")
     then
+        insert(new ArrayList<Interest>(Arrays.asList(Interest.SPIRITUAL, Interest.ACADEMIC)));
 end
 
 rule "interest_spiritual"
@@ -156,6 +165,7 @@ salience 75
     when
         BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="SPIRITUAL")
     then
+        insert(new ArrayList<PathInLife>(Arrays.asList(PathInLife.TEMPLE_LIFE, PathInLife.ISOLATED_LIFE)));
 end
 
 rule "interest_academic"
@@ -164,6 +174,7 @@ salience 75
     when
         BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="ACADEMIC")
     then
+        insert(new ArrayList<PathInLife>(Arrays.asList(PathInLife.DEDICATED, PathInLife.HIGHBORN)));
 end
 
 rule "ACOLYTE"
@@ -214,6 +225,7 @@ salience 50
     when
         BackgroundParams(wayOfLife=="WANDERING_SPIRIT")
     then
+        insert(new ArrayList<Interest>(Arrays.asList(Interest.FAMOUS, Interest.SECLUDED)));
 end
 
 rule "interest_famous"
@@ -222,6 +234,7 @@ salience 75
     when
         BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="FAMOUS")
     then
+        insert(new ArrayList<PathInLife>(Arrays.asList(PathInLife.TALENTED_PERFORMER, PathInLife.BRAVE_HERO)));
 end
 
 rule "ENTERTAINER"
@@ -250,6 +263,7 @@ salience 75
     when
         BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="SECLUDED")
     then
+        insert(new ArrayList<PathInLife>(Arrays.asList(PathInLife.THE_WILDS, PathInLife.THE_SEA)));
 end
 
 rule "OUTLANDER"
