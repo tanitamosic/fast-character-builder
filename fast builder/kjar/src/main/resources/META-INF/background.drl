@@ -285,3 +285,17 @@ salience 100
     then
         modify($cs){$cs.setBackground(Background.SAILOR)};
 end
+
+rule "worldly"
+no-loop true
+salience 25
+    when
+        $bp: BackgroundParams($wol: wayOfLife, $intr: interest, $path: path)
+        accumulate(
+            $wolSum: sum(WayOfLife())
+            $intrSum: sum(Interest())
+            $pathSum: sum(PathInLife())
+        )
+    then
+        modify($bp){$bp.worldly=($wolSum - $wol) * 0.6 + ($intrSum - $intr) * 0.1 + ($pathSum - $path) * 0.3}
+end

@@ -2,12 +2,13 @@
 import fastbuilder.app.model.CharSheet
 import fastbuilder.app.model.enums.Race;
 import fastbuilder.app.model.RaceParams;
-import fastbuilder.app.model.race.SkintoneCategory;
+import fastbuilder.app.model.race.ColorPallette;
 import fastbuilder.app.model.race.Skintone;
 import fastbuilder.app.model;
 dialect  "mvel"
 
-rule "height_short"
+rule "short"
+no-loop true
 salience 100
     when
         RaceParams(size=="SHORT")
@@ -16,27 +17,30 @@ salience 100
 end
 
 rule "short_meek_mischevious"
+no-loop true
 salience 110
     when
-        RaceParams(size=="SHORT" && (disposition == "MEEK" || disposition == "MISCHEVIOUS"))
+        RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS")
     then
         // send halfling/goblin skuntone options to frontend
 end
 
-rule "goblin"
+rule "GOBLIN"
+no-loop true
 salience 111
     when
-        RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS", category=="UNNATURAL")
+        RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS", pallette=="UNNATURAL")
     then
        CharSheet cs = new CharSheet();
        cs.setRace(Race.GOBLIN);
        insert(cs);
 end
 
-rule "halfling_m"
+rule "HALFLING_meek_mischevious"
+no-loop true
 salience 112
     when
-        RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS", category=="NATRUAL")
+        RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS", pallette=="NATRUAL")
     then
        CharSheet cs = new CharSheet();
        cs.setRace(Race.HALFLING);
@@ -44,14 +48,16 @@ salience 112
 end
 
 rule "short_hardowrking"
+no-loop true
 salience 120
     when
-        RaceParams(size=="SHORT" && disposition == "HARDWORKING")
+        RaceParams(size=="SHORT", disposition == "HARDWORKING")
     then
         // send dwarf/gnome feature options to frontend
 end
 
-rule "short_hardowrking_dwarf"
+rule "DWARF_hardowrking"
+no-loop true
 salience 121
     when
         $bp: RaceParams(size=="SHORT" && disposition == "HARDWORKING", $features: features)
@@ -63,7 +69,8 @@ salience 121
         insert(cs);
 end
 
-rule "short_hardowrking_gnome"
+rule "GNOME"
+no-loop true
 salience 122
     when
         RaceParams(size=="SHORT" && disposition == "HARDWORKING", $features: features)
@@ -75,7 +82,8 @@ salience 122
         insert(cs);
 end
 
-rule "short_chill_gentle"
+rule "HALFLING_chill_gentle"
+no-loop true
 salience 130
     when
         RaceParams(size=="SHORT", disposition == "CHILL" || disposition == "GENTLE")
@@ -86,7 +94,8 @@ salience 130
 
 end
 
-rule "short_gruff_snobby"
+rule "DWARF_gruff_snobby"
+no-loop true
 salience 140
     when
         RaceParams(size=="SHORT", disposition == "GRUFF" || disposition == "SNOBBY")
@@ -97,7 +106,8 @@ salience 140
 
 end
 
-rule "height_medium"
+rule "medium"
+no-loop true
 salience 100
     when
         RaceParams(size=="MEDIUM")
@@ -106,25 +116,28 @@ salience 100
 end
 
 rule "medium_unnatural"
+no-loop true
 salience 110
     when
-        RaceParams(size=="MEDIUM", category=="UNNATURAL")
+        RaceParams(size=="MEDIUM", pallette=="UNNATURAL")
     then
         // send medium unnatural skintone options to frontend
 end
 
 rule "medium_unnatural_lean"
+no-loop true
 salience 111
     when
-        RaceParams(size=="MEDIUM", category=="UNNATURAL", build=="LEAN")
+        RaceParams(size=="MEDIUM", pallette=="UNNATURAL", build=="LEAN")
     then
         // send medium tiefling/half-drow feature options to frontend
 end
 
-rule "medium_half-drow"
+rule "HALF-DROW"
+no-loop true
 salience 112
     when
-        RaceParams(size=="MEDIUM", category=="UNNATURAL", build=="LEAN", $features: features)
+        RaceParams(size=="MEDIUM", pallette=="UNNATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.HORNS
         not(exists(Feature(this==$targetFeature) from $features))
     then
@@ -133,10 +146,11 @@ salience 112
         insert(cs);
 end
 
-rule "medium_tiefling"
+rule "TIEFLING"
+no-loop true
 salience 113
     when
-        RaceParams(size=="MEDIUM", category=="UNNATURAL", build=="LEAN", $features: features)
+        RaceParams(size=="MEDIUM", pallette=="UNNATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.HORNS
         exists(Feature(this==$targetFeature) from $features)
     then
@@ -145,20 +159,22 @@ salience 113
         insert(cs);
 end
 
-rule "medium_unnatural_half-orc"
+rule "HALF-ORC"
+no-loop true
 salience 120
     when
-        RaceParams(size=="MEDIUM", category="UNNATURAL", build == "STOCKY" || build == "BROAD")
+        RaceParams(size=="MEDIUM", pallette="UNNATURAL", build == "STOCKY" || build == "BROAD")
     then
         CharSheet cs = new CharSheet();
         cs.setRace(Race.HALF_ORC);
         insert(cs);
 end
 
-rule "medium_unnatural_drow"
+rule "DROW"
+no-loop true
 salience 130
     when
-        RaceParams(size=="MEDIUM", category="UNNATURAL", build == "SLIGHT")
+        RaceParams(size=="MEDIUM", pallette="UNNATURAL", build == "SLIGHT")
     then
         CharSheet cs = new CharSheet();
         cs.setRace(Race.DROW);
@@ -167,25 +183,28 @@ end
 
 
 rule "medium_natural"
+no-loop true
 salience 140
     when
-        RaceParams(size=="MEDIUM", category=="NATURAL")
+        RaceParams(size=="MEDIUM", pallette=="NATURAL")
     then
         // send medium natural skintone options to frontend
 end
 
 rule "medium_natural_lean"
+no-loop true
 salience 141
     when
-        RaceParams(size=="MEDIUM", category=="NATURAL", build == "LEAN")
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build == "LEAN")
     then
         // send human/half elf options to frontend
 end
 
-rule "medium_half-elf"
+rule "HALF-ELF"
+no-loop true
 salience 142
      when
-        RaceParams(size=="MEDIUM", category=="NATURAL", build=="LEAN", $features: features)
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.POINTY_EARS
         exists(Feature(this==$targetFeature) from $features)
     then
@@ -194,10 +213,11 @@ salience 142
         insert(cs);
 end
 
-rule "medium_human"
+rule "HUMAN"
+no-loop true
 salience 143
     when
-        RaceParams(size=="MEDIUM", category=="NATURAL", build=="LEAN", $features: features)
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build=="LEAN", $features: features)
         $targetFeature: Feature.POINTY_EARS
         not(exists(Feature(this==$targetFeature) from $features))
     then
@@ -206,20 +226,22 @@ salience 143
         insert(cs);
 end
 
-rule "medium_natural_broad"
+rule "AASIMAR"
+no-loop true
 salience 150
     when
-        RaceParams(size=="MEDIUM", category=="NATURAL", build == "BROAD")
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build == "BROAD")
     then
         CharSheet cs = new CharSheet();
         cs.setRace(Race.AASIMAR);
         insert(cs);
 end
 
-rule "medium_natural_slight"
+rule "ELF"
+no-loop true
 salience 151
     when
-        RaceParams(size=="MEDIUM", category=="NATURAL", build == "SLIGHT")
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build == "SLIGHT")
     then
         CharSheet cs = new CharSheet();
         cs.setRace(Race.ELF);
@@ -227,7 +249,8 @@ salience 151
 end
 
 
-rule "height_tall"
+rule "tall"
+no-loop true
 salience 100
     when
         RaceParams(size=="TALL")
@@ -237,6 +260,7 @@ end
 
 
 rule "tall_gruff"
+no-loop true
 salience 310
     when
         RaceParams(size=="TALL", disposition=="GRUFF")
@@ -244,7 +268,8 @@ salience 310
         // send disposition options to frontend
 end
 
-rule "tall_dragonborn"
+rule "DRAGONBORN_gruff"
+no-loop true
 salience 311
     when
         $rp: RaceParams(size=="TALL", disposition=="GRUFF", build=="STOCKY" || build=="LEAN")
@@ -252,10 +277,11 @@ salience 311
         CharSheet cs = new CharSheet();
         cs.setRace(Race.DRAGONBORN);
         insert(cs);
-        modify($rp){$rp.category=SkintoneCategory.CHROMATIC_SCALES};
+        modify($rp){$rp.pallette=Skintonepallette.CHROMATIC_SCALES};
 end
 
-rule "tall_goliath"
+rule "GOLIATH"
+no-loop true
 salience 312
     when
         $rp: RaceParams(size=="TALL", disposition=="GRUFF", build=="BROAD")
@@ -263,11 +289,12 @@ salience 312
         CharSheet cs = new CharSheet();
         cs.setRace(Race.GOLIATH);
         insert(cs);
-        modify($rp){$rp.category=SkintoneCategory.UNNATURAL};
-        modify($rp){$rp.category=Skintone.GRAY};
+        modify($rp){$rp.pallette=Skintonepallette.UNNATURAL};
+        modify($rp){$rp.pallette=Skintone.GRAY};
 end
 
-rule "tall_firbolg"
+rule "FIRBOLG"
+no-loop true
 salience 220
     when
         RaceParams(size=="TALL", disposition=="GENTLE" || disposition == "CHILL")
@@ -277,7 +304,8 @@ salience 220
         insert(cs);
 end
 
-rule "tall_snobby_dragonborn"
+rule "DRAGONBORN_snobby"
+no-loop true
 salience 230
     when
         $rp: RaceParams(size=="TALL", disposition=="SNOBBY")
@@ -285,10 +313,14 @@ salience 230
         CharSheet cs = new CharSheet();
         cs.setRace(Race.DRAGONBORN);
         insert(cs);
-        modify($rp){$rp.category=SkintoneCategory.METALLIC_SCALES};
+        modify($rp){$rp.pallette=Skintonepallette.METALLIC_SCALES};
+        modify($rp){$rp.features.append(Feature.SCALES)};
+        modify($rp){$rp.features.append(Feature.TAIL)};
+
 end
 
-rule "tall_hardworking_dragonborn"
+rule "DRAGONBORN_hardworking"
+no-loop true
 salience 231
     when
         $rp: RaceParams(size=="TALL", disposition=="HARDWORKING")
@@ -296,10 +328,11 @@ salience 231
         CharSheet cs = new CharSheet();
         cs.setRace(Race.DRAGONBORN);
         insert(cs);
-        modify($rp){$rp.category=SkintoneCategory.CHROMATIC_SCALES};
+        modify($rp){$rp.pallette=Skintonepallette.CHROMATIC_SCALES};
 end
 
 rule "natural_skintone"
+no-loop true
 salience 10
     when
         $cs: CharSheet(race=="HALFLING" || race=="HUMAN" || race=="DWARF" ||
@@ -309,6 +342,7 @@ salience 10
 end
 
 rule "underdark_skintone"
+no-loop true
 salience 20
     when
         $cs: CharSheet(race=="DROW" || race=="DUEARGAR" || race=="HALF-DROW")
@@ -317,22 +351,25 @@ salience 20
 end
 
 rule "chromatic_scales_skintone"
+no-loop true
 salience 30
     when
-        $rp: RaceParams(category=="CHROMATIC_SCALES")
+        $rp: RaceParams(pallette=="CHROMATIC_SCALES")
     then
         // send chromatic scales options to front
 end
 
 rule "metallic_scales_skintone"
+no-loop true
 salience 35
     when
-        $rp: RaceParams(category=="METALLIC_SCALES")
+        $rp: RaceParams(pallette=="METALLIC_SCALES")
     then
         // send metallic scales options to front
 end
 
 rule "firbolg_skintone"
+no-loop true
 salience 40
     when
         $cs: CharSheet(race=="FIRBOLG")
@@ -341,6 +378,7 @@ salience 40
 end
 
 rule "tiefling_skintone"
+no-loop true
 salience 50
     when
         $cs: CharSheet(race=="TIEFLING")
@@ -349,10 +387,26 @@ salience 50
 end
 
 rule "goblin_skintone"
+no-loop true
 salience 60
     when
         $cs: CharSheet(race=="GOBLIN" || race =="HALF_ORC")
     then
         // send goblin (green, yellow) color options to front
+end
+
+rule "strangeness"
+no-loop true
+salience 70
+    when
+        accumulate(
+            $rp: RaceParams($features: features)
+            $fMin: min($features)
+            $sum: sum($features)
+            $count: count($count)
+        )
+    then
+        modify($rp){$rp.strangeIndex = ($sum-$min)/$count};
+
 end
 

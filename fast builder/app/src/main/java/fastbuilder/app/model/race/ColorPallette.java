@@ -1,6 +1,6 @@
 package fastbuilder.app.model.race;
 
-public enum SkintoneCategory {
+public enum ColorPallette {
     NATURAL,
     UNNATURAL,
     SCALES,

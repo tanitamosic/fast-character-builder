@@ -9,5 +9,6 @@ public class BackgroundParams {
     public WayOfLife wayOfLife;
     public Interest interest;
     public PathInLife path;
+    public Integer worldly;
 
 }

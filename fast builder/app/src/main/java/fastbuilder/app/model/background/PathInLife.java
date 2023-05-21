@@ -1,20 +1,21 @@
 package fastbuilder.app.model.background;
 
 public enum PathInLife {
-    VIOLENCE,
-    PICKPOCKETING,
-    SWINDLING,
-
-    PERFORMER,
-    CRAFTSMAN,
-
-    LAW_OBEYING,
-    LAW_BREAKING,
 
     TEMPLE_LIFE,
     ISOLATED_LIFE,
     DEDICATED,
     HIGHBORN,
+
+    PERFORMER,
+    CRAFTSMAN,
+
+    VIOLENCE,
+    PICKPOCKETING,
+    SWINDLING,
+
+    LAW_OBEYING,
+    LAW_BREAKING,
 
     TALENTED_PERFORMER,
     BRAVE_HERO,

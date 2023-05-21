@@ -9,7 +9,8 @@ public class RaceParams {
     public Disposition disposition;
     public Skintone skintone;
     public List<Feature> features;
-    public SkintoneCategory category;
+    public ColorPallette pallette;
     public Build build;
+    public Integer strangeIndex;
 
 }
