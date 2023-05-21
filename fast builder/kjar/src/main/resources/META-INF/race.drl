@@ -7,7 +7,6 @@ import fastbuilder.app.model.race.Skintone;
 import fastbuilder.app.model;
 dialect  "mvel"
 
-## OBRNI SALIANCE ZA SVE
 rule "height_short"
 salience 100
     when
