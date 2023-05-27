@@ -4,7 +4,10 @@ import fastbuilder.app.model.enums.Race;
 import fastbuilder.app.model.RaceParams;
 import fastbuilder.app.model.race.ColorPallette;
 import fastbuilder.app.model.race.Skintone;
+import fastbuilder.app.model.race.Disposition;
 import fastbuilder.app.model;
+import java.util.ArrayList;
+import java.util.Arrays;
 dialect  "mvel"
 
 rule "short"
@@ -13,7 +16,8 @@ salience 100
     when
         RaceParams(size=="SHORT")
     then
-        // send short options to frontend
+        insert(new ArrayList<Disposition>(Arrays.asList(Dispositon.MEEK, Dispositon.MISCHEVIOUS, Dispositon.HARDWORKING,
+        Dispositon.CHILL, Dispositon.GENTLE, Dispositon.GRUFF, Dispositon.SNOBBY)));
 end
 
 rule "short_meek_mischevious"
@@ -22,7 +26,7 @@ salience 110
     when
         RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS")
     then
-        // send halfling/goblin skuntone options to frontend
+        insert(new ArrayList<ColorPallette>(Arrays.asList(ColorPallette.NATRUAL, ColorPallette.UNNATURAL)));
 end
 
 rule "GOBLIN"
@@ -53,7 +57,7 @@ salience 120
     when
         RaceParams(size=="SHORT", disposition == "HARDWORKING")
     then
-        // send dwarf/gnome feature options to frontend
+        insert(new ArrayList<Feature>(Arrays.asList(Feature.POINTY_EARS)));
 end
 
 rule "DWARF_hardowrking"
@@ -112,7 +116,7 @@ salience 100
     when
         RaceParams(size=="MEDIUM")
     then
-        // send medium options to frontend
+        insert(new ArrayList<ColorPallette>(Arrays.asList(ColorPallette.NATRUAL, ColorPallette.UNNATURAL)));
 end
 
 rule "medium_unnatural"
@@ -121,7 +125,7 @@ salience 110
     when
         RaceParams(size=="MEDIUM", pallette=="UNNATURAL")
     then
-        // send medium unnatural skintone options to frontend
+        insert(new ArrayList<Build>(Arrays.asList(Build.LEAN, Build.STOCKY, Build.BROAD, Build.SLIGHT)));
 end
 
 rule "medium_unnatural_lean"
@@ -130,7 +134,7 @@ salience 111
     when
         RaceParams(size=="MEDIUM", pallette=="UNNATURAL", build=="LEAN")
     then
-        // send medium tiefling/half-drow feature options to frontend
+        insert(new ArrayList<Feature>(Arrays.asList(Feature.HORNS, Feature.TAIL)));
 end
 
 rule "HALF-DROW"
@@ -188,7 +192,8 @@ salience 140
     when
         RaceParams(size=="MEDIUM", pallette=="NATURAL")
     then
-        // send medium natural skintone options to frontend
+    insert(new ArrayList<Build>(Arrays.asList(Build.LEAN, Build.BROAD, Build.SLIGHT)));
+
 end
 
 rule "medium_natural_lean"
@@ -197,7 +202,7 @@ salience 141
     when
         RaceParams(size=="MEDIUM", pallette=="NATURAL", build == "LEAN")
     then
-        // send human/half elf options to frontend
+        insert(new ArrayList<Feature>(Arrays.asList(Feature.POINTY_EARS, Feature.INNATE_MAGIC)));
 end
 
 rule "HALF-ELF"
@@ -255,7 +260,8 @@ salience 100
     when
         RaceParams(size=="TALL")
     then
-        // send tall options to frontend
+        insert(new ArrayList<Disposition>(Arrays.asList(Dispositon.HARDWORKING, Dispositon.CHILL, 
+        Dispositon.GENTLE, Dispositon.GRUFF, Dispositon.SNOBBY)));
 end
 
 
@@ -265,7 +271,7 @@ salience 310
     when
         RaceParams(size=="TALL", disposition=="GRUFF")
     then
-        // send disposition options to frontend
+        insert(new ArrayList<Disposition>(Arrays.asList(Disposition.STOCKY, Disposition.LEAN, Disposition.BROAD)));
 end
 
 rule "DRAGONBORN_gruff"
@@ -338,7 +344,7 @@ salience 10
         $cs: CharSheet(race=="HALFLING" || race=="HUMAN" || race=="DWARF" ||
         race=="ELF" || race=="HALF_ELF" || race=="AASIMAR")
     then
-        // send natural skintone options to front
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.LIGHT, Skintone.MEDIUM, Skintone.DARK)));
 end
 
 rule "underdark_skintone"
@@ -347,7 +353,7 @@ salience 20
     when
         $cs: CharSheet(race=="DROW" || race=="DUEARGAR" || race=="HALF-DROW")
     then
-        // send underdark skintone options to front
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.GRAY, Skintone.INDIGO)));
 end
 
 rule "chromatic_scales_skintone"
@@ -356,7 +362,8 @@ salience 30
     when
         $rp: RaceParams(pallette=="CHROMATIC_SCALES")
     then
-        // send chromatic scales options to front
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.RED, Skintone.GREEN, 
+        Skintone.BLUE, Skintone.WHITE, Skintone.BLACK)));
 end
 
 rule "metallic_scales_skintone"
@@ -365,7 +372,8 @@ salience 35
     when
         $rp: RaceParams(pallette=="METALLIC_SCALES")
     then
-        // send metallic scales options to front
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.GOLD, Skintone.SILVER, 
+        Skintone.BRASS, Skintone.COPPER, Skintone.BRONZE)));
 end
 
 rule "firbolg_skintone"
@@ -374,7 +382,8 @@ salience 40
     when
         $cs: CharSheet(race=="FIRBOLG")
     then
-        // send firbolg color options (green, blue, brown, gray) to front
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.GREEN, Skintone.BLUE,
+        Skintone.BROWN, Skintone.GRAY)));
 end
 
 rule "tiefling_skintone"
@@ -383,7 +392,7 @@ salience 50
     when
         $cs: CharSheet(race=="TIEFLING")
     then
-        // send tiefling (red, lavander) color options to front
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.RED, Skintone.PURPLE)));
 end
 
 rule "goblin_skintone"
@@ -392,7 +401,7 @@ salience 60
     when
         $cs: CharSheet(race=="GOBLIN" || race =="HALF_ORC")
     then
-        // send goblin (green, yellow) color options to front
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.YELLOW, Skintone.GREEN)));
 end
 
 rule "strangeness"

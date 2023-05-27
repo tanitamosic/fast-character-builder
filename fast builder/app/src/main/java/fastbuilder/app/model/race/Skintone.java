@@ -1,13 +1,36 @@
 package fastbuilder.app.model.race;
 
 public enum Skintone {
+    // NATURAL
     LIGHT,
     MEDIUM,
     DARK,
+
+    // TIEFLING
     RED,
     PURPLE,
+
+    // UNDERDARK
     GRAY,
     INDIGO,
+
+    // FIRBOLG
+    BROWN,
+
+    // GOBLIN/HALF-ORC
     GREEN,
-    YELLOW
+    YELLOW,
+
+    // CHROMA SCALES
+    BLUE,
+    WHITE,
+    BLACK,
+
+    // METAL SCALES
+    GOLD,
+    SILVER,
+    BRASS,
+    COPPER,
+    BRONZE
+
 }
