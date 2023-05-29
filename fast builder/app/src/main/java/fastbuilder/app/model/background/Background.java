@@ -1,4 +1,4 @@
-package fastbuilder.app.model.enums;
+package fastbuilder.app.model.background;
 
 public enum Background {
     ACOLYTE,

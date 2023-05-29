@@ -1,0 +1,19 @@
+template header
+charclass
+roles
+
+package class
+
+rule "Collect Party Member Roles_@{row.rowNumber}"
+no-loop true
+when
+    $pm: PartyMember(charClass == @{charclass}, $roles)
+    $partyRoles: ArrayList<Role>()
+then
+    modify($partyRoles){$partyRoles.addAll($roles)};
+end
+
+end template
+
+
+

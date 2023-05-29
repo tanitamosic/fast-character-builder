@@ -1,0 +1,22 @@
+template header
+charclass
+skills
+
+package class
+
+rule "Collect Party Member Skills_@{row.rowNumber}"
+no-loop true
+when
+    $skillList: ArrayList<Skill>()
+    $neededSkill: Skill() from $skillList
+    accumulate(
+        $skill: Skill( @{skills} contains $neededSkill, $skillList contains $neededSkill)
+    )
+    $count: count($skill>3)
+
+    $candidates: ArrayList<Subclass>()
+then
+    modify($candidates){$candidates.add(@{charclass})};
+end
+
+end template

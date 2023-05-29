@@ -1,10 +1,10 @@
 
 import fastbuilder.app.model.CharSheet;
-import fastbuilder.app.model.BackgroundParams;
+import fastbuilder.app.model.background.BackgroundParams;
 import fastbuilder.app.model.background.PathInLife;
 import fastbuilder.app.model.background.Interest;
 import fastbuilder.app.model.background.WayOfLife;
-import fastbuilder.app.model.enums.Background;
+import fastbuilder.app.model.background.Background;
 import java.util.ArrayList;
 import java.util.Arrays;
 

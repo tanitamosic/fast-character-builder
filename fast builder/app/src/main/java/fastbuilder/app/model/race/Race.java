@@ -1,4 +1,4 @@
-package fastbuilder.app.model.enums;
+package fastbuilder.app.model.race;
 
 public enum Race {
     HALFLING,

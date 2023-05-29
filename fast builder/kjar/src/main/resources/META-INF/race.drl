@@ -1,7 +1,7 @@
 
 import fastbuilder.app.model.CharSheet
-import fastbuilder.app.model.enums.Race;
-import fastbuilder.app.model.RaceParams;
+import fastbuilder.app.model.race.Race;
+import fastbuilder.app.model.race.RaceParams;
 import fastbuilder.app.model.race.ColorPallette;
 import fastbuilder.app.model.race.Skintone;
 import fastbuilder.app.model.race.Disposition;

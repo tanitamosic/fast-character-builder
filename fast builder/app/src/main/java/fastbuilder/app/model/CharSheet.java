@@ -1,14 +1,13 @@
 package fastbuilder.app.model;
 
-import fastbuilder.app.model.enums.Background;
-import fastbuilder.app.model.enums.Race;
-import fastbuilder.app.model.enums.Subclass;
-import fastbuilder.app.model.race.Feature;
+import fastbuilder.app.model.background.Background;
+import fastbuilder.app.model.race.Race;
+import fastbuilder.app.model.subclass.CharClass;
 
 public class CharSheet {
     Background background;
     Race race;
-    Subclass subclass;
+    CharClass charClass;
     public Background getBackground() {
         return background;
     }
@@ -21,19 +20,19 @@ public class CharSheet {
     public void setRace(Race race) {
         this.race = race;
     }
-    public Subclass getSubclass() {
-        return subclass;
+    public CharClass getSubclass() {
+        return charClass;
     }
-    public void setSubclass(Subclass subclass) {
-        this.subclass = subclass;
+    public void setSubclass(CharClass charClass) {
+        this.charClass = charClass;
     }
     
     public CharSheet() {
     }
-    public CharSheet(Background background, Race race, Subclass subclass) {
+    public CharSheet(Background background, Race race, CharClass charClass) {
         this.background = background;
         this.race = race;
-        this.subclass = subclass;
+        this.charClass = charClass;
     }
 
     

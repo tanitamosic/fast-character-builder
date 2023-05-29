@@ -1,4 +1,4 @@
-package fastbuilder.app.model;
+package fastbuilder.app.model.race;
 
 import fastbuilder.app.model.race.*;
 

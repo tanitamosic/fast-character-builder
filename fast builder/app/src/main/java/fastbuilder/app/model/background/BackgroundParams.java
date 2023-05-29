@@ -1,4 +1,4 @@
-package fastbuilder.app.model;
+package fastbuilder.app.model.background;
 
 import fastbuilder.app.model.background.Interest;
 import fastbuilder.app.model.background.PathInLife;
