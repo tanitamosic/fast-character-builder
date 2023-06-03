@@ -1,0 +1,44 @@
+:host .p-button {
+  font-size: 40px;
+  color: black;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  margin-top: 50px;
+  white-space: nowrap;
+}
+
+.container > .center {
+  display: inline-block;
+  width: 33.33%;
+  box-sizing: border-box;
+  vertical-align: top; /* Align divs vertically at the top */
+}
+
+.characteristics-title {
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.characteristics-content {
+  margin-top: 20px;
+}
+
+/deep/ .custom-dropdown {
+  width: 300px!important;
+}
+
+.table-cell {
+  padding-bottom: 40px;
+}
+
+.label {
+  font-size: 24px;
+  text-align: right;
+}

@@ -1,0 +1,41 @@
+<div class="center">
+  <span style="font-size: 48px; font-weight: bold;">Welcome to fast character builder for D&D!</span>
+  <div *ngIf="!creationStarted" class="center" style="font-size: 20px; width: 1000px;">
+    <p>Hello, new adventurer! Welcome to Fast Character Builder, a one-stop shop for making your first character. We will help you pick everything from background to subclass in less than two minutes.</p>
+
+    <p>With a few clicks of a button and your fellow players' details, we'll do the heavy lifting and determine the best character choices for you! Are you ready to delve into your first adventure?</p>
+  </div>
+  <div *ngIf="!creationStarted" class="center">
+    <button pButton label="Start" class="p-button-raised p-button-text p-button-secondary" (click)="start()"></button>
+  </div>
+  <div *ngIf="creationStarted" class="container">
+    <div class="center">
+      <span class="characteristics-title">Race</span>
+      <table style="margin-left: 130px;">
+        <tr>
+          <td class="table-cell label"><label>Size:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="How tall are you" [options]="sizes" [(ngModel)]="race1" optionLabel="size" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+      </table>
+    </div>
+    <div class="center">
+      <span class="characteristics-title">Background</span>
+      <table style="margin-left: 68px;">
+        <tr>
+          <td class="table-cell label"><label>Way of life:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="How did you live your life" [options]="waysOfLife" [(ngModel)]="wayOfLife" (onChange)="wayPicked()" optionLabel="origin" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="wayOfLifeChosen">
+          <td class="table-cell label"><label>Interest:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="What are your interests" [options]="interests" [(ngModel)]="interest" (onChange)="interestPicked()" optionLabel="origin" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="interestChosen">
+          <td class="table-cell label"><label>Path in life:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="What path have you trod"  [options]="pathsInLife" [(ngModel)]="path" (onChange)="pathPicked()" optionLabel="origin" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+      </table>
+    </div>
+    <div class="center"><span class="characteristics-title">Class</span></div>
+  </div>
+</div>
+

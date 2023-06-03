@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.container img {
+  opacity: 0.5;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+.container .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
