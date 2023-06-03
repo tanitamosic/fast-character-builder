@@ -11,19 +11,27 @@
   <div *ngIf="creationStarted" class="container">
     <div class="center">
       <span class="characteristics-title">Race</span>
-      <table style="margin-left: 130px;">
+      <table style="margin-left: 110px;">
         <tr>
           <td class="table-cell label"><label>Size:</label></td>
-          <td class="table-cell"><p-dropdown placeholder="How tall are you" [options]="sizes" [(ngModel)]="race1" optionLabel="size" styleClass="custom-dropdown"></p-dropdown></td>
+          <td class="table-cell"><p-dropdown placeholder="How tall are you" [options]="sizes" [(ngModel)]="size" (onChange)="sizePicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+         </tr>
+        <tr *ngIf="showDisposition">
+          <td class="table-cell label"><label>Disposition:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="Describe your demeanor" [options]="dispositions" [(ngModel)]="disposition" (onChange)="dispositionPicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="showPalette">
+          <td class="table-cell label"><label>Color palette:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="What is your skin tone" [options]="colorPalettes" [(ngModel)]="palette" (onChange)="palettePicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
         </tr>
       </table>
     </div>
     <div class="center">
       <span class="characteristics-title">Background</span>
-      <table style="margin-left: 68px;">
+      <table style="margin-left: 64px;">
         <tr>
           <td class="table-cell label"><label>Way of life:</label></td>
-          <td class="table-cell"><p-dropdown placeholder="How did you live your life" [options]="waysOfLife" [(ngModel)]="wayOfLife" (onChange)="wayPicked()" optionLabel="origin" styleClass="custom-dropdown"></p-dropdown></td>
+          <td class="table-cell"><p-dropdown placeholder="How did you live your life" [options]="waysOfLife" [(ngModel)]="wayOfLife" (onChange)="wayPicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
         </tr>
         <tr *ngIf="wayOfLifeChosen">
           <td class="table-cell label"><label>Interest:</label></td>
@@ -35,7 +43,87 @@
         </tr>
       </table>
     </div>
-    <div class="center"><span class="characteristics-title">Class</span></div>
+    <div class="center">
+      <span class="characteristics-title">Class</span>
+      <div>
+        <label class="center subtitle">Info about campaign</label>
+        <table style="margin-left: 80px;">
+            <tr>
+              <td class="label"><label>Magic:</label></td>
+              <td><p-dropdown placeholder="How common is magic"  [options]="magicAmounts" [(ngModel)]="magicAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+            </tr>
+            <tr>
+              <td class="label"><label>Technology:</label></td>
+              <td><p-dropdown placeholder="How advanced is technology"  [options]="technologyAmounts" [(ngModel)]="technologyAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+            </tr>
+            <tr>
+              <td class="label"><label>Dark:</label></td>
+              <td><p-dropdown placeholder="How dark is your campaign"  [options]="darkAmounts" [(ngModel)]="darkAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+            </tr>
+        </table>
+      </div>
+      <div style="margin-top: 20px;">
+        <label class="center subtitle">Your team</label>
+        <table>
+          <tr>
+            <td>
+              <p-button label="Add teammate" icon="pi pi-plus" styleClass="p-button-success custom-button" (click)="addTeammate()"></p-button>
+            </td>
+            <td>
+              <p-button label="Remove teammate" icon="pi pi-minus" styleClass="p-button-danger custom-button" (click)="removeTeammate()"></p-button>
+            </td>
+          </tr>
+          <tr *ngIf="teamMemberCounter >= 1">
+            <td>
+              <p-dropdown placeholder="First teammate class" [options]="teamClasses" [(ngModel)]="teammate1class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+            <td>
+              <p-dropdown placeholder="First teammate subclass" [disabled]="!isClass1Selected" [options]="teamSubclasses" [(ngModel)]="teammate1subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+          </tr>
+          <tr *ngIf="teamMemberCounter >= 2">
+            <td>
+              <p-dropdown placeholder="Second teammate class" [options]="teamClasses" [(ngModel)]="teammate2class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+            <td>
+              <p-dropdown placeholder="Second teammate subclass" [disabled]="!isClass2Selected" [options]="teamSubclasses" [(ngModel)]="teammate2subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+          </tr>
+          <tr *ngIf="teamMemberCounter >= 3">
+            <td>
+              <p-dropdown placeholder="Third teammate class" [options]="teamClasses" [(ngModel)]="teammate3class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+            <td>
+              <p-dropdown placeholder="Third teammate subclass" [disabled]="!isClass3Selected" [options]="teamSubclasses" [(ngModel)]="teammate3subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+          </tr>
+          <tr *ngIf="teamMemberCounter >= 4">
+            <td>
+              <p-dropdown placeholder="Fourth teammate class" [options]="teamClasses" [(ngModel)]="teammate4class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+            <td>
+              <p-dropdown placeholder="Fourth teammate subclass" [disabled]="!isClass4Selected" [options]="teamSubclasses" [(ngModel)]="teammate4subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+          </tr>
+          <tr *ngIf="teamMemberCounter >= 5">
+            <td>
+              <p-dropdown placeholder="Fifth teammate class" [options]="teamClasses" [(ngModel)]="teammate5class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+            <td>
+              <p-dropdown placeholder="Fifth teammate subclass" [disabled]="!isClass5Selected" [options]="teamSubclasses" [(ngModel)]="teammate5subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+          </tr>
+          <tr *ngIf="teamMemberCounter >= 6">
+            <td>
+              <p-dropdown placeholder="Sixth teammate class" [options]="teamClasses" [(ngModel)]="teammate6class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+            <td>
+              <p-dropdown placeholder="Sixth teammate subclass" [disabled]="!isClass6Selected" [options]="teamSubclasses" [(ngModel)]="teammate6subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 

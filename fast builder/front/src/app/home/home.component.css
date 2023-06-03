@@ -26,11 +26,22 @@
   font-weight: bold;
 }
 
+.subtitle {
+  font-size: 26px;
+}
+
 .characteristics-content {
   margin-top: 20px;
 }
 
 /deep/ .custom-dropdown {
+  width: 300px!important;
+  /*background: rgba(255, 255, 255, 0.3)!important;*/
+}
+
+/deep/ .custom-button {
+  /*width: 300px!important;*/
+  opacity: 0.6;
   width: 300px!important;
 }
 
