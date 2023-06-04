@@ -22,7 +22,19 @@
         </tr>
         <tr *ngIf="showPalette">
           <td class="table-cell label"><label>Color palette:</label></td>
-          <td class="table-cell"><p-dropdown placeholder="What is your skin tone" [options]="colorPalettes" [(ngModel)]="palette" (onChange)="palettePicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+          <td class="table-cell"><p-dropdown placeholder="How natural are you" [options]="colorPalettes" [(ngModel)]="palette" (onChange)="palettePicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="showSkintone">
+          <td class="table-cell label"><label>Skin tone:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="What is your skin tone" [options]="skinTones" [(ngModel)]="skintone" (onChange)="skintonePicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="showFeatures">
+          <td class="table-cell label"><label>Features:</label></td>
+          <td class="table-cell"><p-multiSelect placeholder="What are your features" [options]="features" [(ngModel)]="selectedFeatures" optionLabel="name" styleClass="custom-dropdown"></p-multiSelect></td>
+        </tr>
+        <tr *ngIf="showBuilds">
+          <td class="table-cell label"><label>Build:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="How roided are you" [options]="builds" [(ngModel)]="build" (onChange)="buildPicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
         </tr>
       </table>
     </div>
@@ -64,63 +76,29 @@
       </div>
       <div style="margin-top: 20px;">
         <label class="center subtitle">Your team</label>
-        <table>
+        <table style="margin-left: -40px;">
           <tr>
             <td>
-              <p-button label="Add teammate" icon="pi pi-plus" styleClass="p-button-success custom-button" (click)="addTeammate()"></p-button>
+              <p-button label="Add teammate" icon="pi pi-plus" styleClass="p-button-success smaller-custom-button" (click)="addTeammate()"></p-button>
             </td>
             <td>
-              <p-button label="Remove teammate" icon="pi pi-minus" styleClass="p-button-danger custom-button" (click)="removeTeammate()"></p-button>
+              <p-button label="Remove teammate" icon="pi pi-minus" styleClass="p-button-danger smaller-custom-button" (click)="removeTeammate()"></p-button>
             </td>
+            <td></td>
           </tr>
-          <tr *ngIf="teamMemberCounter >= 1">
-            <td>
-              <p-dropdown placeholder="First teammate class" [options]="teamClasses" [(ngModel)]="teammate1class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-            <td>
-              <p-dropdown placeholder="First teammate subclass" [disabled]="!isClass1Selected" [options]="teamSubclasses" [(ngModel)]="teammate1subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-          </tr>
-          <tr *ngIf="teamMemberCounter >= 2">
-            <td>
-              <p-dropdown placeholder="Second teammate class" [options]="teamClasses" [(ngModel)]="teammate2class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-            <td>
-              <p-dropdown placeholder="Second teammate subclass" [disabled]="!isClass2Selected" [options]="teamSubclasses" [(ngModel)]="teammate2subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-          </tr>
-          <tr *ngIf="teamMemberCounter >= 3">
-            <td>
-              <p-dropdown placeholder="Third teammate class" [options]="teamClasses" [(ngModel)]="teammate3class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-            <td>
-              <p-dropdown placeholder="Third teammate subclass" [disabled]="!isClass3Selected" [options]="teamSubclasses" [(ngModel)]="teammate3subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-          </tr>
-          <tr *ngIf="teamMemberCounter >= 4">
-            <td>
-              <p-dropdown placeholder="Fourth teammate class" [options]="teamClasses" [(ngModel)]="teammate4class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-            <td>
-              <p-dropdown placeholder="Fourth teammate subclass" [disabled]="!isClass4Selected" [options]="teamSubclasses" [(ngModel)]="teammate4subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-          </tr>
-          <tr *ngIf="teamMemberCounter >= 5">
-            <td>
-              <p-dropdown placeholder="Fifth teammate class" [options]="teamClasses" [(ngModel)]="teammate5class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-            <td>
-              <p-dropdown placeholder="Fifth teammate subclass" [disabled]="!isClass5Selected" [options]="teamSubclasses" [(ngModel)]="teammate5subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-          </tr>
-          <tr *ngIf="teamMemberCounter >= 6">
-            <td>
-              <p-dropdown placeholder="Sixth teammate class" [options]="teamClasses" [(ngModel)]="teammate6class" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-            <td>
-              <p-dropdown placeholder="Sixth teammate subclass" [disabled]="!isClass6Selected" [options]="teamSubclasses" [(ngModel)]="teammate6subClass" optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-            </td>
-          </tr>
+          <ng-container *ngFor="let teammate of teammates; let i = index">
+            <tr>
+              <td>
+                <p-dropdown placeholder="Teammate {{ i + 1 }} class" [options]="teamClasses" [(ngModel)]="teammate.charClass" optionLabel="name" styleClass="smaller-custom-dropdown"></p-dropdown>
+              </td>
+              <td>
+                <p-dropdown placeholder="Teammate {{ i + 1 }} subclass" [disabled]="!teammate.charClass" [options]="getSubclasses(teammate.charClass)" [(ngModel)]="teammate.subClass" optionLabel="name" styleClass="smaller-custom-dropdown"></p-dropdown>
+              </td>
+              <td>
+                <p-multiSelect defaultLabel="Proficiencies" [options]="teamSkills" [(ngModel)]="teammate.skills" display="chip" optionLabel="name" styleClass="custom-multiselect"></p-multiSelect>
+              </td>
+            </tr>
+          </ng-container>
         </table>
       </div>
     </div>

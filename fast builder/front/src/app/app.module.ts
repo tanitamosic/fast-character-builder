@@ -10,22 +10,24 @@ import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
 import {HttpClientModule} from "@angular/common/http";
+import {MultiSelectModule} from "primeng/multiselect";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ButtonModule,
-    DropdownModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    TableModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ButtonModule,
+        DropdownModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        TableModule,
+        HttpClientModule,
+        MultiSelectModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

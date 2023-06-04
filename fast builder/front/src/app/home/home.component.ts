@@ -38,6 +38,21 @@ interface ColorPalette {
   color: string;
 }
 
+interface Skintone {
+  name: string;
+  color: string;
+}
+
+interface Feature {
+  name: string;
+  feature: string;
+}
+
+interface Build {
+  name: string;
+  build: string;
+}
+
 interface Skill {
   name: string;
   skill: string;
@@ -55,8 +70,8 @@ interface SubClass {
 }
 
 class Teammate {
-  charClass: string;
-  subClass: string;
+  charClass: Class;
+  subClass: SubClass;
   skills: Skill[] = [];
 
   constructor(obj: any) {
@@ -64,8 +79,13 @@ class Teammate {
     this.subClass = obj.subClass;
     this.skills = obj.skills;
   }
-  isReady() {
-    return this.charClass !== '' && this.subClass !== '' && this.skills.length > 0
+
+  getDto() {
+    return {
+      charClass: this.charClass.charClass,
+      subClass: this.subClass.subClass,
+      skills: this.skills
+    }
   }
 }
 
@@ -77,15 +97,21 @@ class Teammate {
 export class HomeComponent implements OnInit {
 
   // GLOBALS
-  creationStarted = true;
+  creationStarted = false;
 
   // RACE
-  size: any;
   sizes: Size[] = [{name: 'Short', size: 'SHORT'}, {name: 'Medium', size: 'MEDIUM'}, {name: 'Tall', size: 'TALL'}];
   dispositions: Disposition[] = [];
   colorPalettes: ColorPalette[] = [];
-  palette: any;
+  features: Feature[] = [];
+  skinTones: Skintone[] = [];
+  builds: Build[] = [{name: 'Lean', build: 'LEAN'}, {name: 'Stocky', build: 'STOCKY'}, {name: 'Slight', build: 'SLIGHT'}, {name: 'Broad', build: 'BROAD'}];
+  size: any;
   disposition: any;
+  palette: any;
+  selectedFeatures: any;
+  skintone: any;
+  build: any;
 
   // BACKGROUND
   waysOfLife: WayOfLife[] = [{name: 'Wandering spirit', origin: 'WANDERING_SPIRIT'}, {name: 'Loner', origin: 'LONER'}, {name: 'One place', origin: 'ONE_PLACE'}, {name: 'Organization member', origin: 'ORGANIZATION_MEMBER'}];
@@ -103,25 +129,7 @@ export class HomeComponent implements OnInit {
   technologyAmount: any;
   darkAmount: any;
 
-  teamMemberCounter = 0;
-  teammate1: Teammate = new Teammate({charClass: '', subclass: '', skills: []});
-  teammate2: Teammate = new Teammate({charClass: '', subclass: '', skills: []});
-  teammate3: Teammate = new Teammate({charClass: '', subclass: '', skills: []});
-  teammate4: Teammate = new Teammate({charClass: '', subclass: '', skills: []});
-  teammate5: Teammate = new Teammate({charClass: '', subclass: '', skills: []});
-  teammate6: Teammate = new Teammate({charClass: '', subclass: '', skills: []});
-  teammate1class: any;
-  teammate1subClass: any;
-  teammate2class: any;
-  teammate2subClass: any;
-  teammate3class: any;
-  teammate3subClass: any;
-  teammate4class: any;
-  teammate4subClass: any;
-  teammate5class: any;
-  teammate5subClass: any;
-  teammate6class: any;
-  teammate6subClass: any;
+  teammates: Teammate[] = []
 
   teamClasses: Class[] = [
     {charClass: 'ARTIFICER', name: "Artificer"},
@@ -211,12 +219,9 @@ export class HomeComponent implements OnInit {
   interestChosen: boolean = false;
   showDisposition: boolean = false;
   showPalette: boolean = false;
-  isClass1Selected: boolean = false;
-  isClass2Selected: boolean = false;
-  isClass3Selected: boolean = false;
-  isClass4Selected: boolean = false;
-  isClass5Selected: boolean = false;
-  isClass6Selected: boolean = false;
+  showSkintone: boolean = false;
+  showFeatures: boolean = false;
+  showBuilds: boolean = false;
 
 
   constructor(private backgroundService: BackgroundService, private classService: ClassService, private raceService: RaceService) { }
@@ -230,11 +235,13 @@ export class HomeComponent implements OnInit {
 
   wayPicked() {
     // TODO: IMPLEMENT
+    console.log(this.wayOfLife)
     this.wayOfLifeChosen = true;
   }
 
   interestPicked() {
     // TODO: IMPLEMENT
+    this.interestChosen = true;
   }
 
   pathPicked() {
@@ -254,21 +261,35 @@ export class HomeComponent implements OnInit {
   }
 
   addTeammate() {
-    if (this.teamMemberCounter === 6) return;
-    this.teamMemberCounter += 1;
+    if (this.teammates.length === 10) return;
+    this.teammates.push(new Teammate({charClass: undefined, subClass: undefined, skills: []})); // Add a new teammate object
   }
 
   removeTeammate() {
-    switch (this.teamMemberCounter) {
-      case 1: this.teammate1 = new Teammate({charClass: '', subclass: '', skills: []}); break;
-      case 2: this.teammate2 = new Teammate({charClass: '', subclass: '', skills: []}); break;
-      case 3: this.teammate3 = new Teammate({charClass: '', subclass: '', skills: []}); break;
-      case 4: this.teammate4 = new Teammate({charClass: '', subclass: '', skills: []}); break;
-      case 5: this.teammate5 = new Teammate({charClass: '', subclass: '', skills: []}); break;
-      case 6: this.teammate6 = new Teammate({charClass: '', subclass: '', skills: []}); break;
-      default: break;
-    }
-    if (this.teamMemberCounter === 0) return;
-    this.teamMemberCounter -= 1;
+    this.teammates.pop(); // Remove the last teammate object
+  }
+
+  getSubclasses(charClass: Class) {
+    let subclasses: SubClass[] = [];
+    if (charClass === undefined) return subclasses;
+    this.teamSubclasses.forEach(e => {
+      if (e.charClass === charClass.charClass) {
+        subclasses.push(e)
+      }
+    })
+    return subclasses;
+  }
+
+  onClassChange(i: number) {
+    let t = this.teammates.at(i);
+    console.log(t);
+  }
+
+  skintonePicked() {
+    // TODO: IMPLEMENT
+  }
+
+  buildPicked() {
+    // TODO: IMPLEMENT
   }
 }

@@ -39,11 +39,23 @@
   /*background: rgba(255, 255, 255, 0.3)!important;*/
 }
 
+/deep/ .smaller-custom-dropdown {
+  width: 230px!important;
+  /*background: rgba(255, 255, 255, 0.3)!important;*/
+}
+
 /deep/ .custom-button {
   /*width: 300px!important;*/
-  opacity: 0.6;
+  opacity: 0.8;
   width: 300px!important;
 }
+/deep/ .smaller-custom-button {
+  /*width: 300px!important;*/
+  opacity: 0.8;
+  width: 230px!important;
+}
+
+/deep/ .custom-multiselect { width: 200px; }
 
 .table-cell {
   padding-bottom: 40px;
