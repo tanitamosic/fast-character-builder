@@ -60,18 +60,22 @@
       <div>
         <label class="center subtitle">Info about campaign</label>
         <table style="margin-left: 80px;">
-            <tr>
-              <td class="label"><label>Magic:</label></td>
-              <td><p-dropdown placeholder="How common is magic"  [options]="magicAmounts" [(ngModel)]="magicAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
-            </tr>
-            <tr>
-              <td class="label"><label>Technology:</label></td>
-              <td><p-dropdown placeholder="How advanced is technology"  [options]="technologyAmounts" [(ngModel)]="technologyAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
-            </tr>
-            <tr>
-              <td class="label"><label>Dark:</label></td>
-              <td><p-dropdown placeholder="How dark is your campaign"  [options]="darkAmounts" [(ngModel)]="darkAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
-            </tr>
+          <tr>
+            <td class="label"><label>Magic:</label></td>
+            <td><p-dropdown placeholder="How common is magic"  [options]="magicAmounts" [(ngModel)]="magicAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+          </tr>
+          <tr>
+            <td class="label"><label>Technology:</label></td>
+            <td><p-dropdown placeholder="How advanced is technology"  [options]="technologyAmounts" [(ngModel)]="technologyAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+          </tr>
+          <tr>
+            <td class="label"><label>Dark:</label></td>
+            <td><p-dropdown placeholder="How dark is your campaign"  [options]="darkAmounts" [(ngModel)]="darkAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+          </tr>
+          <tr>
+            <td class="label"><label>Level:</label></td>
+            <td><p-dropdown placeholder="What's your party's level"  [options]="partyLevels" [(ngModel)]="level" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+          </tr>
         </table>
       </div>
       <div style="margin-top: 20px;">
@@ -79,10 +83,10 @@
         <table style="margin-left: -40px;">
           <tr>
             <td>
-              <p-button label="Add teammate" icon="pi pi-plus" styleClass="p-button-success smaller-custom-button" (click)="addTeammate()"></p-button>
+              <button pButton label="Add teammate" icon="pi pi-plus" class="p-button-raised smaller-custom-button success-color" (click)="addTeammate()"></button>
             </td>
             <td>
-              <p-button label="Remove teammate" icon="pi pi-minus" styleClass="p-button-danger smaller-custom-button" (click)="removeTeammate()"></p-button>
+              <button pButton label="Remove teammate" icon="pi pi-minus" class="p-button-raised smaller-custom-button danger-color" (click)="removeTeammate()"></button>
             </td>
             <td></td>
           </tr>
@@ -103,5 +107,13 @@
       </div>
     </div>
   </div>
+  <p-dialog header="This is your character" [(visible)]="displayCreationDoneModal" [modal]="true" [style]="{width: 'auto'}"
+            [draggable]="false" [resizable]="false">
+    <app-completed (creationCompleted)="onComplete($event)" (modalClosed)="displayCreationDoneModal=false"></app-completed>
+    <ng-template pTemplate="footer">
+      <p-button icon="pi pi-file-pdf" [disabled]="true" (click)="exportAsPDF()" label="Export as pdf" styleClass="p-button-warning" pTooltip="Coming soon!" tooltipPosition="bottom"></p-button>
+      <p-button icon="pi pi-refresh pi-spin" (click)="displayCreationDoneModal=false" label="Redo" styleClass="p-button-success" pTooltip="Create another character" tooltipPosition="bottom"></p-button>
+    </ng-template>
+  </p-dialog>
 </div>
 

@@ -58,6 +58,11 @@ interface Skill {
   skill: string;
 }
 
+interface PartyLevel {
+  name: string;
+  level: number;
+}
+
 interface Class {
   name: string;
   charClass: string;
@@ -125,9 +130,11 @@ export class HomeComponent implements OnInit {
   magicAmounts: Amount[] = [{name: 'Not at all', amount: 'None'}, {name: 'A little', amount: 'Low'}, {name: 'A decent amount', amount: 'Mid'}, {name: 'High magic', amount: 'High'}, {name: 'Spellcasters only', amount: 'Full'}]
   technologyAmounts: Amount[] = [{name: 'Not at all', amount: 'None'}, {name: 'A little', amount: 'Low'}, {name: 'A decent amount', amount: 'Mid'}, {name: 'Modern', amount: 'High'}, {name: 'Futuristic', amount: 'Full'}]
   darkAmounts: Amount[] = [{name: 'Not at all', amount: 'None'}, {name: 'A little', amount: 'Low'}, {name: 'A decent amount', amount: 'Mid'}, {name: 'Very', amount: 'High'}, {name: 'We are the bad guys', amount: 'Full'}]
+  partyLevels: PartyLevel[] = [{name: '1', level: 1}, {name: '2', level: 2}, {name: '3', level: 3}];
   magicAmount: any;
   technologyAmount: any;
   darkAmount: any;
+  level: any;
 
   teammates: Teammate[] = []
 
@@ -222,6 +229,7 @@ export class HomeComponent implements OnInit {
   showSkintone: boolean = false;
   showFeatures: boolean = false;
   showBuilds: boolean = false;
+  displayCreationDoneModal: boolean = false;
 
 
   constructor(private backgroundService: BackgroundService, private classService: ClassService, private raceService: RaceService) { }
@@ -237,6 +245,7 @@ export class HomeComponent implements OnInit {
     // TODO: IMPLEMENT
     console.log(this.wayOfLife)
     this.wayOfLifeChosen = true;
+    this.displayCreationDoneModal = true;
   }
 
   interestPicked() {
@@ -290,6 +299,14 @@ export class HomeComponent implements OnInit {
   }
 
   buildPicked() {
+    // TODO: IMPLEMENT
+  }
+
+  onComplete($event: boolean) {
+    // TODO: IMPLEMENT
+  }
+
+  exportAsPDF() {
     // TODO: IMPLEMENT
   }
 }

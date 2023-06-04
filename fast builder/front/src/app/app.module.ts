@@ -11,23 +11,29 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
 import {HttpClientModule} from "@angular/common/http";
 import {MultiSelectModule} from "primeng/multiselect";
+import { CompletedComponent } from './completed/completed.component';
+import {DialogModule} from "primeng/dialog";
+import {TooltipModule} from "primeng/tooltip";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CompletedComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ButtonModule,
-        DropdownModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        TableModule,
-        HttpClientModule,
-        MultiSelectModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ButtonModule,
+    DropdownModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    TableModule,
+    HttpClientModule,
+    MultiSelectModule,
+    DialogModule,
+    TooltipModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

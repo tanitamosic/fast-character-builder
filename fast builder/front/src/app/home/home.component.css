@@ -57,6 +57,19 @@
 
 /deep/ .custom-multiselect { width: 200px; }
 
+:host .danger-color {
+  background-color: #3e2a2a;
+  font-size: 16px;
+  /*opacity: 1!important;*/
+  color: white;
+}
+:host .success-color {
+  background-color: #304233;
+  font-size: 16px;
+  /*opacity: 1!important;*/
+  color: white;
+}
+
 .table-cell {
   padding-bottom: 40px;
 }
