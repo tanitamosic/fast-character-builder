@@ -9,7 +9,8 @@ export class CompletedComponent implements OnInit {
 
   @Output() creationCompleted = new EventEmitter<boolean>();
   @Output() modalClosed = new EventEmitter<boolean>();
-
+  proficiencies = ['Acrobatics', 'Performance Deception', 'Persuasion', 'Sleigh of Hand']
+  characterImage = 'assets/tiefling_lavander.png' //https://primefaces.org/cdn/primeng/images/usercard.png
   constructor() { }
 
   ngOnInit(): void {

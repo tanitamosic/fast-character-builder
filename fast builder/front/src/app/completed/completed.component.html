@@ -1,1 +1,47 @@
-<p>completed works!</p>
+<p-card header="Your character" [style]="{ width: '650px', background: '#eeeeee' }">
+  <div class="container">
+    <div class="center">
+      <img alt="Character image" src="{{characterImage}}" class="character" />
+    </div>
+    <div class="center">
+      <div style="text-align: left;">
+        <p><b>Race:</b> Tiefling, Lavander</p>
+        <p><b>Background:</b> Entertainer</p>
+        <p><b>Class:</b> College of Lore Bard</p>
+        <p><b>Proficiencies:</b> {{proficiencies.join(', ')}}</p>
+      </div>
+      <div>
+        <table style="border-collapse: collapse; border: 1px solid black;">
+          <tr>
+            <td class="stats"><b>Ability</b></td>
+            <td class="stats"><b>Score</b></td>
+          </tr>
+          <tr>
+            <td class="stats">Strength</td>
+            <td class="stats">10</td>
+          </tr>
+          <tr>
+            <td class="stats">Dexterity</td>
+            <td class="stats">15</td>
+          </tr>
+          <tr>
+            <td class="stats">Constitution</td>
+            <td class="stats">14</td>
+          </tr>
+          <tr>
+            <td class="stats">Intelligence</td>
+            <td class="stats">13</td>
+          </tr>
+          <tr>
+            <td class="stats">Wisdom</td>
+            <td class="stats">10</td>
+          </tr>
+          <tr>
+            <td class="stats">Charisma</td>
+            <td class="stats">18</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</p-card>

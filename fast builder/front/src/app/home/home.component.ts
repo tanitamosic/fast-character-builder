@@ -102,7 +102,7 @@ class Teammate {
 export class HomeComponent implements OnInit {
 
   // GLOBALS
-  creationStarted = false;
+  creationStarted = true;
 
   // RACE
   sizes: Size[] = [{name: 'Short', size: 'SHORT'}, {name: 'Medium', size: 'MEDIUM'}, {name: 'Tall', size: 'TALL'}];

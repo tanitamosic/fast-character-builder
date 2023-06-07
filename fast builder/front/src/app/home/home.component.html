@@ -107,7 +107,7 @@
       </div>
     </div>
   </div>
-  <p-dialog header="This is your character" [(visible)]="displayCreationDoneModal" [modal]="true" [style]="{width: 'auto'}"
+  <p-dialog [(visible)]="displayCreationDoneModal" [modal]="true" [style]="{width: 'auto'}" [closable]="false"
             [draggable]="false" [resizable]="false">
     <app-completed (creationCompleted)="onComplete($event)" (modalClosed)="displayCreationDoneModal=false"></app-completed>
     <ng-template pTemplate="footer">

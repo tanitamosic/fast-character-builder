@@ -14,6 +14,7 @@ import {MultiSelectModule} from "primeng/multiselect";
 import { CompletedComponent } from './completed/completed.component';
 import {DialogModule} from "primeng/dialog";
 import {TooltipModule} from "primeng/tooltip";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -21,19 +22,20 @@ import {TooltipModule} from "primeng/tooltip";
     HomeComponent,
     CompletedComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ButtonModule,
-    DropdownModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    TableModule,
-    HttpClientModule,
-    MultiSelectModule,
-    DialogModule,
-    TooltipModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ButtonModule,
+        DropdownModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        TableModule,
+        HttpClientModule,
+        MultiSelectModule,
+        DialogModule,
+        TooltipModule,
+        CardModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
