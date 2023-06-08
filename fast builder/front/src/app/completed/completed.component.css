@@ -1,3 +1,11 @@
+.custom-card {
+  background-image: url("src/assets/parchment.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
 .center {
   width: 270px;
   text-align: center;
@@ -25,21 +33,32 @@ td {
 }
 
 .character {
+  margin-top: 17px;
   width: 250px;
   height: 350px;
   /*overflow: hidden;*/
   /*object-fit: cover;*/
   border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  /*background-color: #ffffff;*/
+  /*box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);*/
 }
 
 table {
-  background-color: #ffffff;
+  background-image: url("src/assets/parchment_2.jpg");
+  background-repeat: no-repeat; /* Prevent the image from repeating */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   text-shadow: none;
+  /*background-color: #ffffff;*/
+  margin-bottom: 17px;
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
 }
 
 div {
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+p {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
 }

@@ -1,14 +1,14 @@
-<p-card header="Your character" [style]="{ width: '650px', background: '#eeeeee' }">
+<div [style]="{ width: '650px', height: 'auto' }" class="custom-card" >
   <div class="container">
     <div class="center">
       <img alt="Character image" src="{{characterImage}}" class="character" />
     </div>
     <div class="center">
       <div style="text-align: left;">
-        <p><b>Race:</b> Tiefling, Lavander</p>
-        <p><b>Background:</b> Entertainer</p>
-        <p><b>Class:</b> College of Lore Bard</p>
-        <p><b>Proficiencies:</b> {{proficiencies.join(', ')}}</p>
+        <p>Race: <i>Tiefling, Lavander</i></p>
+        <p>Background: <i>Entertainer</i></p>
+        <p>Class: <i>College of Lore Bard</i></p>
+        <p>Proficiencies: <i>{{proficiencies.join(', ')}}</i></p>
       </div>
       <div>
         <table style="border-collapse: collapse; border: 1px solid black;">
@@ -44,4 +44,4 @@
       </div>
     </div>
   </div>
-</p-card>
+</div>
