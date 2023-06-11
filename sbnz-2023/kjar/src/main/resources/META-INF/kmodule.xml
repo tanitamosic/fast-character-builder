@@ -1,5 +1,8 @@
 <kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://jboss.org/kie/6.0.0/kmodule">
-    <kbase name="backgroundKbase">
+    <kbase name="backgroundKbase" packages="background">
         <ksession name="backgroundKSession"/>
+    </kbase>
+    <kbase name="raceKbase" packages="race">
+        <ksession name="raceKSession"/>
     </kbase>
 </kmodule>

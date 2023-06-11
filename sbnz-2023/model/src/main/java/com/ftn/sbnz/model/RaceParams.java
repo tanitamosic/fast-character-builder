@@ -1,8 +1,4 @@
-package fastbuilder.app.model.race;
-
-import fastbuilder.app.model.race.Disposition;
-import fastbuilder.app.model.race.Size;
-import fastbuilder.app.model.race.Skintone;
+package com.ftn.sbnz.model;
 
 import java.util.List;
 

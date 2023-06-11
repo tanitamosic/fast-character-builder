@@ -1,0 +1,18 @@
+template header
+charclass
+skills
+
+package class
+
+rule "Collect Party Member Skills_@{row.rowNumber}"
+no-loop true
+when
+    $pm: PartyMemberSkillModel(charClass == @{charclass}, $skills)
+    $partySkills: ArrayList<Skill>()
+then
+    modify($partySkills){$partySkills.addAll($skills)};
+end
+
+end template
+
+

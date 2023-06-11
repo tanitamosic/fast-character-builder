@@ -1,0 +1,424 @@
+package race;
+
+import com.ftn.sbnz.model.CharSheet
+import com.ftn.sbnz.model.Race;
+import com.ftn.sbnz.model.RaceParams;
+import com.ftn.sbnz.model.ColorPallette;
+import com.ftn.sbnz.model.Skintone;
+import com.ftn.sbnz.model.Disposition;
+import com.ftn.sbnz.model.Feature;
+import com.ftn.sbnz.model.Build;
+import com.ftn.sbnz.model;
+import java.util.ArrayList;
+import java.util.Arrays;
+dialect  "mvel"
+
+rule "short"
+no-loop true
+salience 100
+    when
+        RaceParams(size=="SHORT")
+    then
+        insert(new ArrayList<Disposition>(Arrays.asList(Disposition.MEEK, Disposition.MISCHEVIOUS, Disposition.HARDWORKING,
+        Disposition.CHILL, Disposition.GENTLE, Disposition.GRUFF, Disposition.SNOBBY)));
+end
+
+rule "short_meek_mischevious"
+no-loop true
+salience 110
+    when
+        RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS")
+    then
+        insert(new ArrayList<ColorPallette>(Arrays.asList(ColorPallette.NATURAL, ColorPallette.UNNATURAL)));
+end
+
+rule "GOBLIN"
+no-loop true
+salience 111
+    when
+        RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS", pallette=="UNNATURAL")
+    then
+       CharSheet cs = new CharSheet();
+       cs.setRace(Race.GOBLIN);
+       insert(cs);
+end
+
+rule "HALFLING_meek_mischevious"
+no-loop true
+salience 112
+    when
+        RaceParams(size=="SHORT", disposition == "MEEK" || disposition == "MISCHEVIOUS", pallette=="NATRUAL")
+    then
+       CharSheet cs = new CharSheet();
+       cs.setRace(Race.HALFLING);
+       insert(cs);
+end
+
+rule "short_hardowrking"
+no-loop true
+salience 120
+    when
+        RaceParams(size=="SHORT", disposition == "HARDWORKING")
+    then
+        insert(new ArrayList<Feature>(Arrays.asList(Feature.POINTY_EARS)));
+end
+
+rule "DWARF_hardowrking"
+no-loop true
+salience 121
+    when
+        $bp: RaceParams(size=="SHORT" && disposition == "HARDWORKING", $features: features)
+        $targetFeature: Feature.POINTY_EARS
+        exists(Feature(this==$targetFeature) from $features)
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.DWARF);
+        insert(cs);
+end
+
+rule "GNOME"
+no-loop true
+salience 122
+    when
+        RaceParams(size=="SHORT" && disposition == "HARDWORKING", $features: features)
+        $targetFeature: Feature.POINTY_EARS
+        not(exists(Feature(this==$targetFeature) from $features))
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.GNOME);
+        insert(cs);
+end
+
+rule "HALFLING_chill_gentle"
+no-loop true
+salience 130
+    when
+        RaceParams(size=="SHORT", disposition == "CHILL" || disposition == "GENTLE")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.HALFLING);
+        insert(cs);
+
+end
+
+rule "DWARF_gruff_snobby"
+no-loop true
+salience 140
+    when
+        RaceParams(size=="SHORT", disposition == "GRUFF" || disposition == "SNOBBY")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.DWARF);
+        insert(cs);
+
+end
+
+rule "medium"
+no-loop true
+salience 100
+    when
+        RaceParams(size=="MEDIUM")
+    then
+        insert(new ArrayList<ColorPallette>(Arrays.asList(ColorPallette.NATRUAL, ColorPallette.UNNATURAL)));
+end
+
+rule "medium_unnatural"
+no-loop true
+salience 110
+    when
+        RaceParams(size=="MEDIUM", pallette=="UNNATURAL")
+    then
+        insert(new ArrayList<Build>(Arrays.asList(Build.LEAN, Build.STOCKY, Build.BROAD, Build.SLIGHT)));
+end
+
+rule "medium_unnatural_lean"
+no-loop true
+salience 111
+    when
+        RaceParams(size=="MEDIUM", pallette=="UNNATURAL", build=="LEAN")
+    then
+        insert(new ArrayList<Feature>(Arrays.asList(Feature.HORNS, Feature.TAIL)));
+end
+
+rule "HALF-DROW"
+no-loop true
+salience 112
+    when
+        RaceParams(size=="MEDIUM", pallette=="UNNATURAL", build=="LEAN", $features: features)
+        $targetFeature: Feature.HORNS
+        not(exists(Feature(this==$targetFeature) from $features))
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.HALF_DROW);
+        insert(cs);
+end
+
+rule "TIEFLING"
+no-loop true
+salience 113
+    when
+        RaceParams(size=="MEDIUM", pallette=="UNNATURAL", build=="LEAN", $features: features)
+        $targetFeature: Feature.HORNS
+        exists(Feature(this==$targetFeature) from $features)
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.TIEFLING);
+        insert(cs);
+end
+
+rule "HALF-ORC"
+no-loop true
+salience 120
+    when
+        RaceParams(size=="MEDIUM", pallette="UNNATURAL", build == "STOCKY" || build == "BROAD")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.HALF_ORC);
+        insert(cs);
+end
+
+rule "DROW"
+no-loop true
+salience 130
+    when
+        RaceParams(size=="MEDIUM", pallette="UNNATURAL", build == "SLIGHT")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.DROW);
+        insert(cs);
+end
+
+
+rule "medium_natural"
+no-loop true
+salience 140
+    when
+        RaceParams(size=="MEDIUM", pallette=="NATURAL")
+    then
+    insert(new ArrayList<Build>(Arrays.asList(Build.LEAN, Build.BROAD, Build.SLIGHT)));
+
+end
+
+rule "medium_natural_lean"
+no-loop true
+salience 141
+    when
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build == "LEAN")
+    then
+        insert(new ArrayList<Feature>(Arrays.asList(Feature.POINTY_EARS, Feature.INNATE_MAGIC)));
+end
+
+rule "HALF-ELF"
+no-loop true
+salience 142
+     when
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build=="LEAN", $features: features)
+        $targetFeature: Feature.POINTY_EARS
+        exists(Feature(this==$targetFeature) from $features)
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.HALF_ELF);
+        insert(cs);
+end
+
+rule "HUMAN"
+no-loop true
+salience 143
+    when
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build=="LEAN", $features: features)
+        $targetFeature: Feature.POINTY_EARS
+        not(exists(Feature(this==$targetFeature) from $features))
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.HUMAN);
+        insert(cs);
+end
+
+rule "AASIMAR"
+no-loop true
+salience 150
+    when
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build == "BROAD")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.AASIMAR);
+        insert(cs);
+end
+
+rule "ELF"
+no-loop true
+salience 151
+    when
+        RaceParams(size=="MEDIUM", pallette=="NATURAL", build == "SLIGHT")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.ELF);
+        insert(cs);
+end
+
+
+rule "tall"
+no-loop true
+salience 100
+    when
+        RaceParams(size=="TALL")
+    then
+        insert(new ArrayList<Disposition>(Arrays.asList(Disposition.HARDWORKING, Disposition.CHILL,
+        Disposition.GENTLE, Disposition.GRUFF, Disposition.SNOBBY)));
+end
+
+
+rule "tall_gruff"
+no-loop true
+salience 310
+    when
+        RaceParams(size=="TALL", disposition=="GRUFF")
+    then
+        insert(new ArrayList<Build>(Arrays.asList(Build.STOCKY, Build.LEAN, Build.BROAD)));
+end
+
+rule "DRAGONBORN_gruff"
+no-loop true
+salience 311
+    when
+        $rp: RaceParams(size=="TALL", disposition=="GRUFF", build=="STOCKY" || build=="LEAN")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.DRAGONBORN);
+        insert(cs);
+        modify($rp){$rp.pallette=ColorPallette.CHROMATIC_SCALES};
+end
+
+rule "GOLIATH"
+no-loop true
+salience 312
+    when
+        $rp: RaceParams(size=="TALL", disposition=="GRUFF", build=="BROAD")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.GOLIATH);
+        insert(cs);
+        modify($rp){$rp.pallette=ColorPallette.UNNATURAL};
+        modify($rp){$rp.pallette=Skintone.GRAY};
+end
+
+rule "FIRBOLG"
+no-loop true
+salience 220
+    when
+        RaceParams(size=="TALL", disposition=="GENTLE" || disposition == "CHILL")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.FIRBOLG);
+        insert(cs);
+end
+
+rule "DRAGONBORN_snobby"
+no-loop true
+salience 230
+    when
+        $rp: RaceParams(size=="TALL", disposition=="SNOBBY")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.DRAGONBORN);
+        insert(cs);
+        modify($rp){$rp.pallette=ColorPallette.METALLIC_SCALES};
+        modify($rp){$rp.features.append(Feature.SCALES)};
+        modify($rp){$rp.features.append(Feature.TAIL)};
+
+end
+
+rule "DRAGONBORN_hardworking"
+no-loop true
+salience 231
+    when
+        $rp: RaceParams(size=="TALL", disposition=="HARDWORKING")
+    then
+        CharSheet cs = new CharSheet();
+        cs.setRace(Race.DRAGONBORN);
+        insert(cs);
+        modify($rp){$rp.pallette=ColorPallette.CHROMATIC_SCALES};
+end
+
+rule "natural_skintone"
+no-loop true
+salience 10
+    when
+        $cs: CharSheet(race=="HALFLING" || race=="HUMAN" || race=="DWARF" ||
+        race=="ELF" || race=="HALF_ELF" || race=="AASIMAR")
+    then
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.LIGHT, Skintone.MEDIUM, Skintone.DARK)));
+end
+
+rule "underdark_skintone"
+no-loop true
+salience 20
+    when
+        $cs: CharSheet(race=="DROW" || race=="DUEARGAR" || race=="HALF-DROW")
+    then
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.GRAY, Skintone.INDIGO)));
+end
+
+rule "chromatic_scales_skintone"
+no-loop true
+salience 30
+    when
+        $rp: RaceParams(pallette=="CHROMATIC_SCALES")
+    then
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.RED, Skintone.GREEN, 
+        Skintone.BLUE, Skintone.WHITE, Skintone.BLACK)));
+end
+
+rule "metallic_scales_skintone"
+no-loop true
+salience 35
+    when
+        $rp: RaceParams(pallette=="METALLIC_SCALES")
+    then
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.GOLD, Skintone.SILVER, 
+        Skintone.BRASS, Skintone.COPPER, Skintone.BRONZE)));
+end
+
+rule "firbolg_skintone"
+no-loop true
+salience 40
+    when
+        $cs: CharSheet(race=="FIRBOLG")
+    then
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.GREEN, Skintone.BLUE,
+        Skintone.BROWN, Skintone.GRAY)));
+end
+
+rule "tiefling_skintone"
+no-loop true
+salience 50
+    when
+        $cs: CharSheet(race=="TIEFLING")
+    then
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.RED, Skintone.PURPLE)));
+end
+
+rule "goblin_skintone"
+no-loop true
+salience 60
+    when
+        $cs: CharSheet(race=="GOBLIN" || race =="HALF_ORC")
+    then
+        insert(new ArrayList<Skintone>(Arrays.asList(Skintone.YELLOW, Skintone.GREEN)));
+end
+
+rule "strangeness"
+no-loop true
+salience 70
+    when
+        accumulate(
+            $rp: RaceParams($features: features)
+            $fMin: min($features)
+            $sum: sum($features)
+            $count: count($count)
+        )
+    then
+        modify($rp){$rp.strangeIndex = ($sum-$min)/$count};
+
+end
+

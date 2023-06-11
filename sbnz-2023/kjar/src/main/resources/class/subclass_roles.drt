@@ -1,0 +1,22 @@
+template header
+charclass
+roles
+
+package class
+
+rule "Collect Party Member Roles_@{row.rowNumber}"
+no-loop true
+when
+    $roleList: ArrayList<Role>()
+    $neededRole: Role() from $roleList
+    accumulate(
+        $role: Role( @{roles} contains $neededRole, $roleList contains $neededRole)
+    )
+    $count: count($role>3)
+
+    $candidates: ArrayList<Subclass>()
+then
+    modify($candidates){$candidates.add(@{charclass})};
+end
+
+end template

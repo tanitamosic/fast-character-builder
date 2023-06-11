@@ -1,0 +1,18 @@
+template header
+charclass
+magicMin
+techIdeal
+darkIdeal
+
+package class
+
+rule "Campaign Details Filter_@{row.rowNumber}"
+no-loop true
+when
+    $candidates: ArrayList<Subclass>()
+    $cd: CampaignDetailsModel(magic>@{magicMin}, abs(tech-@{techIdeal)<4, abs(dark-@{darkIdeal})<5)
+then
+    modify($candidates){$candidates.remove(@{charclass})};
+end
+
+end template
