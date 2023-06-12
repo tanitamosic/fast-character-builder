@@ -11,16 +11,16 @@ import org.kie.internal.utils.KieHelper;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SkillService {
-    public void getPartyMemberSkillsCSV(){
+    
+    private ArrayList<CharClassModel> data;
+    public SkillService(){
         InputStream template = SkillService.class.getResourceAsStream("/class/party_skills.drt");
+        data = new ArrayList<>();
 
-        ArrayList<CharClassModel> data = new ArrayList<>();
         data.add(new CharClassModel(CharClass.ARTIFICER.getEnumString(), "ARCANA, HISTORY, INVESTIGATION, MEDICINE, NATURE, PERCEPTION, "));
         data.add(new CharClassModel(CharClass.BARBARIAN.getEnumString(), "ANIMAL_HANDLING, ATHLETICS, INTIMIDATION, NATURE, PERCEPTION, SURVIVAL, "));
         data.add(new CharClassModel(CharClass.BARD.getEnumString(), "ACROBATICS, ANIMAL_HANDLING, ARCANA, ATHLETICS, DECEPTION, HISTORY, INSIGHT, INTIMIDATION, INVESTIGATION, MEDICINE, NATURE, PERCEPTION, PERFORMANCE, PERSUASION, RELIGION, SLEIGH_OF_HAND, STEALTH, SURVIVAL, "));
@@ -36,28 +36,6 @@ public class SkillService {
         data.add(new CharClassModel(CharClass.WIZARD.getEnumString(), "ARCANA, HISTORY, INSIGHT, INVESTIGATION, MEDICINE, RELIGION, "));
 
     }
-
-    public void getPartyMemberSkillsObjects(){
-        InputStream template = SkillService.class.getResourceAsStream("/class/party_skills.drt");
-
-//
-//        data.add(new PartyMemberModel("wizard", new ArrayList<Skill>(Arrays.asList(Skill.ARCANA,
-//                Skill.HISTORY, Skill.INSIGHT, Skill.INVESTIGATION, Skill.MEDICINE, Skill.RELIGION))));
-//        data.add(new PartyMemberModel("artificer", new ArrayList<Skill>(Arrays.asList(Skill.ARCANA,
-//                Skill.HISTORY, Skill.PERCEPTION, Skill.INVESTIGATION, Skill.MEDICINE, Skill.NATURE, Skill.SLEIGH_OF_HAND))));
-//        data.add(new PartyMemberModel("barbarian", new ArrayList<Skill>(Arrays.asList(Skill.ANIMAL_HANDLING,
-//                Skill.ATHLETICS, Skill.INTIMIDATION, Skill.NATURE, Skill.PERCEPTION, Skill.SURVIVAL))));
-//
-//
-//        ObjectDataCompiler converter = new ObjectDataCompiler();
-//        String drl = converter.compile(data, template);
-//
-//
-//        KieSession ksession = createKieSessionFromDRL(drl);
-
-    }
-
-
 
     private KieSession createKieSessionFromDRL(String drl){
         KieHelper kieHelper = new KieHelper();
@@ -106,6 +84,66 @@ public class SkillService {
             } else{
                 ret.put(r,1);
             }
+        }
+        return ret;
+    }
+
+    public HashMap<Subclass, Double> getCandidatesSkills(HashMap<Skill, Double> neededSkills){
+        HashMap<Subclass, Double> candidateSubclasses = getSubclassCandidates(neededSkills);
+        List<Map.Entry<Subclass, Double>> highestPriorityList = getHighestPriorityList(candidateSubclasses, 5);
+        return convertToMap(highestPriorityList);
+    }
+
+    private HashMap<Subclass, Double> getSubclassCandidates(HashMap<Skill, Double> neededSkills) {
+        HashMap<Subclass, Double> candidateSubclasses = new HashMap<>();
+        for (Skill r : neededSkills.keySet()){
+            for(CharClassModel pmm : data){
+                if (parseSkillsString(pmm.proficiencies).contains(r)){
+                    CharClass charClass = CharClass.valueOf(pmm.charClass.split("\\.")[1]);
+                    ArrayList<Subclass> subclasses = new ArrayList<>();
+                    for (Subclass s : Subclass.values()){
+                        if (s.getCharClass()==charClass) subclasses.add(s);
+                    }
+                    for (Subclass s : subclasses) {
+                        if (candidateSubclasses.containsKey(s))
+                            candidateSubclasses.put(s,candidateSubclasses.get(s)+neededSkills.get(r));
+                        else
+                            candidateSubclasses.put(s,neededSkills.get(r));
+                    }
+                }
+            }
+        }
+        return candidateSubclasses;
+    }
+
+    private static List<Map.Entry<Subclass, Double>> getHighestPriorityList(HashMap<Subclass, Double> ret, Integer n) {
+        List<Map.Entry<Subclass, Double>> entryList = new ArrayList<>(ret.entrySet());
+        Collections.sort(entryList, new Comparator<Map.Entry<Subclass, Double>>() {
+            @Override
+            public int compare(Map.Entry<Subclass, Double> entry1, Map.Entry<Subclass, Double> entry2) {
+                return entry2.getValue().compareTo(entry1.getValue());
+            }
+        });
+
+        List<Map.Entry<Subclass, Double>> highestPriorityEntries = entryList.subList(0, Math.min(n, entryList.size()));
+        return highestPriorityEntries;
+    }
+
+    private static HashMap<Subclass, Double> convertToMap(List<Map.Entry<Subclass, Double>> highestPriorityEntries) {
+        HashMap<Subclass, Double> highestPriority = new HashMap<>();
+        for (Map.Entry<Subclass, Double> entry : highestPriorityEntries) {
+            Subclass key = entry.getKey();
+            double priority = entry.getValue();
+            highestPriority.put(key, priority);
+        }
+        return highestPriority;
+    }
+
+    private ArrayList<Skill> parseSkillsString(String proficiencies) {
+        ArrayList<Skill> ret = new ArrayList<>();
+        for(String s : proficiencies.split(", ")){
+            Skill role = Skill.valueOf(s);
+            ret.add(role);
         }
         return ret;
     }

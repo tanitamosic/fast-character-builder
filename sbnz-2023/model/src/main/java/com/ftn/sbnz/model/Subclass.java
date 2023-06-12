@@ -69,6 +69,7 @@ public enum Subclass{
         this.charClass = charclass;
         this.name = name;
     }
+    public CharClass getCharClass() {return charClass;}
 
     public String getDisplayName() {
         return name + " " + charClass.getDisplayName();

@@ -21,12 +21,13 @@ import java.util.List;
 public class CampaignService {
 
     private KieSession kieSession;
+    private List<CampaignModel> data;
 
 
     public CampaignService() throws IOException {
         File file = new File("kjar/src/main/resources/class/campaign.drt");
         InputStream template = new FileInputStream(file);
-        List<CampaignModel> data = new ArrayList<CampaignModel>();
+        data = new ArrayList<CampaignModel>();
 
         data.add(new CampaignModel(Subclass.ALCHEMIST.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString()));
         data.add(new CampaignModel(Subclass.ARTILLERIST.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString()));

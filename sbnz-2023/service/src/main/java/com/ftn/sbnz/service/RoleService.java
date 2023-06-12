@@ -10,10 +10,7 @@ import org.kie.internal.utils.KieHelper;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -22,13 +19,13 @@ public class RoleService {
     private String partyRolesString = "";
     private ArrayList<Role> neededRoles = new ArrayList<Role>();
     private KieSession kieSession;
+    private List<PartyMemberModel> data;
 
     public RoleService() throws IOException {
         File file = new File("kjar/src/main/resources/class/party_roles.drt");
         InputStream template = new FileInputStream(file);
-        List<PartyMemberModel> data = new ArrayList<PartyMemberModel>();
 
-
+        data = new ArrayList<>();
         data.add(new PartyMemberModel(CharClass.ARTIFICER.getEnumString(), Subclass.NO_SUBCLASS.getEnumString(),
 				"DEFENDER, HEALER, LIBRARIAN, SUPPORT, UTILITY, "));
         data.add(new PartyMemberModel(CharClass.ARTIFICER.getEnumString(), Subclass.ALCHEMIST.getEnumString(),
@@ -152,23 +149,30 @@ public class RoleService {
     }
 
     public HashMap<Role, Integer> getPartyRoles(ArrayList<PartyMemberDTO> party) {
+        partyRolesString = "";
         for (PartyMemberDTO member : party){
             kieSession.insert(member);
         }
-        kieSession.fireAllRules();
+
         StringBuilder finalPartyRoles = (StringBuilder) kieSession.getGlobal("partyRoles");
+        finalPartyRoles.setLength(0);
+
+        kieSession.fireAllRules();
+
         partyRolesString = finalPartyRoles.toString();
         System.out.println(partyRolesString);
-        return parseRolesString(partyRolesString);
+        ArrayList<Role> rolesList = parseRolesString(partyRolesString);
+
+        return roleListToMap(rolesList);
     }
 
-    private HashMap<Role, Integer> parseRolesString(String partyRolesString) {
+    private ArrayList<Role> parseRolesString(String partyRolesString) {
         ArrayList<Role> ret = new ArrayList<>();
         for(String s : partyRolesString.split(", ")){
             Role role = Role.valueOf(s);
             ret.add(role);
         }
-        return roleListToMap(ret);
+        return ret;
     }
 
     private HashMap<Role, Integer> roleListToMap(ArrayList<Role> list) {
@@ -213,7 +217,52 @@ public class RoleService {
                 ret.put(r, 20.0);
             }
         }
-
         return ret;
     }
+
+    public HashMap<Subclass, Double> getCandidatesRoles(HashMap<Role, Double> neededRoles){
+        HashMap<Subclass, Double> candidateSubclasses = getSubclassCandidates(neededRoles);
+        List<Map.Entry<Subclass, Double>> highestPriorityList = getHighestPriorityList(candidateSubclasses, 5);
+        return convertToMap(highestPriorityList);
+    }
+
+    private HashMap<Subclass, Double> getSubclassCandidates(HashMap<Role, Double> neededRoles) {
+        HashMap<Subclass, Double> candidateSubclasses = new HashMap<>();
+        for (Role r : neededRoles.keySet()){
+            for(PartyMemberModel pmm : data){
+                if (parseRolesString(pmm.roles).contains(r)){
+                    Subclass subclass = Subclass.valueOf(pmm.subclass.split("\\.")[1]);
+                    if (candidateSubclasses.containsKey(subclass))
+                        candidateSubclasses.put(subclass,candidateSubclasses.get(subclass)+ neededRoles.get(r));
+                    else
+                        candidateSubclasses.put(subclass, neededRoles.get(r));
+                }
+            }
+        }
+        return candidateSubclasses;
+    }
+
+    private static List<Map.Entry<Subclass, Double>> getHighestPriorityList(HashMap<Subclass, Double> ret, Integer n) {
+        List<Map.Entry<Subclass, Double>> entryList = new ArrayList<>(ret.entrySet());
+        Collections.sort(entryList, new Comparator<Map.Entry<Subclass, Double>>() {
+            @Override
+            public int compare(Map.Entry<Subclass, Double> entry1, Map.Entry<Subclass, Double> entry2) {
+                return entry2.getValue().compareTo(entry1.getValue());
+            }
+        });
+
+        List<Map.Entry<Subclass, Double>> highestPriorityEntries = entryList.subList(0, Math.min(n, entryList.size()));
+        return highestPriorityEntries;
+    }
+
+    private static HashMap<Subclass, Double> convertToMap(List<Map.Entry<Subclass, Double>> highestPriorityEntries) {
+        HashMap<Subclass, Double> highestPriority = new HashMap<>();
+        for (Map.Entry<Subclass, Double> entry : highestPriorityEntries) {
+            Subclass key = entry.getKey();
+            double priority = entry.getValue();
+            highestPriority.put(key, priority);
+        }
+        return highestPriority;
+    }
+
 }

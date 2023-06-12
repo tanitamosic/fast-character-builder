@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CharClassModel {
-    String charClass;
-    String proficiencies;
+    public String charClass;
+    public String proficiencies;
 }

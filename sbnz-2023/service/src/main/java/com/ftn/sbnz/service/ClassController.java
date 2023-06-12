@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/dnd/class")
@@ -20,8 +21,11 @@ public class ClassController {
     @PostMapping("/party")
     public ResponseEntity<String> postParty(@RequestBody PartyDTO dto){
         ArrayList<PartyMemberDTO> party = new ArrayList<>();
-        party.add(new PartyMemberDTO(CharClass.BARBARIAN, Subclass.NO_SUBCLASS, new ArrayList<>()));
-        classService.temp(party);
+        party.add(new PartyMemberDTO(CharClass.BARBARIAN, Subclass.NO_SUBCLASS,
+                new ArrayList<Skill>(Arrays.asList(Skill.ATHLETICS, Skill.ACROBATICS, Skill.NATURE, Skill.INTIMIDATION))));
+        party.add(new PartyMemberDTO(CharClass.CLERIC, Subclass.TEMPEST,
+                new ArrayList<Skill>(Arrays.asList(Skill.MEDICINE, Skill.HISTORY, Skill.INSIGHT, Skill.RELIGION))));
+        classService.getCharClass(party);
         return ResponseEntity.ok("sve ok");
     }
 
