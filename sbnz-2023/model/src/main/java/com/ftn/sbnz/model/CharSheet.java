@@ -1,30 +1,25 @@
 package com.ftn.sbnz.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.HashMap;
+import java.util.List;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class CharSheet {
     Background background;
     Race race;
     CharClass charClass;
-    public Background getBackground() {
-        return background;
-    }
-    public void setBackground(Background background) {
-        this.background = background;
-    }
-    public Race getRace() {
-        return race;
-    }
-    public void setRace(Race race) {
-        this.race = race;
-    }
-    public CharClass getSubclass() {
-        return charClass;
-    }
-    public void setSubclass(CharClass charClass) {
-        this.charClass = charClass;
-    }
-    
-    public CharSheet() {
-    }
+    Subclass subclass;
+    List<Skill> proficiencies;
+    HashMap<Ability, Integer> abilityScores;
+
     public CharSheet(Background background, Race race, CharClass charClass) {
         this.background = background;
         this.race = race;
