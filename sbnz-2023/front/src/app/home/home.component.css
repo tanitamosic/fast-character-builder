@@ -1,0 +1,80 @@
+:host .p-button {
+  font-size: 40px;
+  color: black;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  margin-top: 50px;
+  white-space: nowrap;
+}
+
+.container > .center {
+  display: inline-block;
+  width: 33.33%;
+  box-sizing: border-box;
+  vertical-align: top; /* Align divs vertically at the top */
+}
+
+.characteristics-title {
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 26px;
+}
+
+.characteristics-content {
+  margin-top: 20px;
+}
+
+/deep/ .custom-dropdown {
+  width: 300px!important;
+  /*background: rgba(255, 255, 255, 0.3)!important;*/
+}
+
+/deep/ .smaller-custom-dropdown {
+  width: 230px!important;
+  /*background: rgba(255, 255, 255, 0.3)!important;*/
+}
+
+/deep/ .custom-button {
+  /*width: 300px!important;*/
+  opacity: 0.8;
+  width: 300px!important;
+}
+/deep/ .smaller-custom-button {
+  /*width: 300px!important;*/
+  opacity: 0.8;
+  width: 230px!important;
+}
+
+/deep/ .custom-multiselect { width: 200px; }
+
+:host .danger-color {
+  background-color: #3e2a2a;
+  font-size: 16px;
+  /*opacity: 1!important;*/
+  color: white;
+}
+:host .success-color {
+  background-color: #304233;
+  font-size: 16px;
+  /*opacity: 1!important;*/
+  color: white;
+}
+
+.table-cell {
+  padding-bottom: 40px;
+}
+
+.label {
+  font-size: 24px;
+  text-align: right;
+}

@@ -1,0 +1,47 @@
+<div [style]="{ width: '650px', height: 'auto' }" class="custom-card" >
+  <div class="container">
+    <div class="center">
+      <img alt="Character image" src="{{characterImage}}" class="character" />
+    </div>
+    <div class="center">
+      <div style="text-align: left;">
+        <p>Race: <i>Tiefling, Lavander</i></p>
+        <p>Background: <i>Entertainer</i></p>
+        <p>Class: <i>College of Lore Bard</i></p>
+        <p>Proficiencies: <i>{{proficiencies.join(', ')}}</i></p>
+      </div>
+      <div>
+        <table style="border-collapse: collapse; border: 1px solid black;">
+          <tr>
+            <td class="stats"><b>Ability</b></td>
+            <td class="stats"><b>Score</b></td>
+          </tr>
+          <tr>
+            <td class="stats">Strength</td>
+            <td class="stats">10</td>
+          </tr>
+          <tr>
+            <td class="stats">Dexterity</td>
+            <td class="stats">15</td>
+          </tr>
+          <tr>
+            <td class="stats">Constitution</td>
+            <td class="stats">14</td>
+          </tr>
+          <tr>
+            <td class="stats">Intelligence</td>
+            <td class="stats">13</td>
+          </tr>
+          <tr>
+            <td class="stats">Wisdom</td>
+            <td class="stats">10</td>
+          </tr>
+          <tr>
+            <td class="stats">Charisma</td>
+            <td class="stats">18</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

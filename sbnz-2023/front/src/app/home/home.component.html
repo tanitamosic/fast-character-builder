@@ -1,0 +1,129 @@
+<div class="center">
+  <span style="font-size: 48px; font-weight: bold;">Welcome to fast character builder for D&D!</span>
+  <div *ngIf="!creationStarted" class="center" style="font-size: 20px; width: 1000px;">
+    <p>Hello, new adventurer! Welcome to Fast Character Builder, a one-stop shop for making your first character. We will help you pick everything from background to subclass in less than two minutes.</p>
+
+    <p>With a few clicks of a button and your fellow players' details, we'll do the heavy lifting and determine the best character choices for you! Are you ready to delve into your first adventure?</p>
+  </div>
+  <div *ngIf="!creationStarted" class="center">
+    <button pButton label="Start" class="p-button-raised p-button-text p-button-secondary" (click)="start()"></button>
+  </div>
+  <div *ngIf="creationStarted" class="container">
+    <div class="center">
+      <span class="characteristics-title">Race</span>
+      <table style="margin-left: 110px;">
+        <tr>
+          <td class="table-cell label"><label>Size:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="How tall are you" [disabled]="sizeDisabled" [options]="sizes" [(ngModel)]="size" (onChange)="sizePicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+         </tr>
+        <tr *ngIf="showDisposition">
+          <td class="table-cell label"><label>Disposition:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="Describe your demeanor" [disabled]="dispositionDisabled" [options]="dispositions" [(ngModel)]="disposition" (onChange)="dispositionPicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="showPalette">
+          <td class="table-cell label"><label>Color palette:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="How natural are you" [disabled]="paletteDisabled" [options]="colorPalettes" [(ngModel)]="palette" (onChange)="palettePicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="showSkintone">
+          <td class="table-cell label"><label>Skin tone:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="What is your skin tone" [disabled]="skinDisabled" [options]="skinTones" [(ngModel)]="skintone" (onChange)="skintonePicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="showFeatures">
+          <td class="table-cell label"><label>Features:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="What are your features" [disabled]="featuresDisabled" [options]="features" [(ngModel)]="selectedFeature" (onChange)="featurePicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="showBuilds">
+          <td class="table-cell label"><label>Build:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="How roided are you" [disabled]="buildDisabled" [options]="builds" [(ngModel)]="build" (onChange)="buildPicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="charSheet.race">
+          <td colspan="2">
+            <label class="characteristics-title">{{ capitalize(charSheet.race) }}</label>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="center">
+      <span class="characteristics-title">Background</span>
+      <table style="margin-left: 64px;">
+        <tr>
+          <td class="table-cell label"><label>Way of life:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="How did you live your life" [disabled]="wayDisabled" [options]="waysOfLife" [(ngModel)]="wayOfLife" (onChange)="wayPicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="showInterest">
+          <td class="table-cell label"><label>Interest:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="What are your interests" [disabled]="interestDisabled" [options]="interests" [(ngModel)]="interest" (onChange)="interestPicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="showPath">
+          <td class="table-cell label"><label>Path in life:</label></td>
+          <td class="table-cell"><p-dropdown placeholder="What path have you trod" [disabled]="pathDisabled" [options]="pathsInLife" [(ngModel)]="path" (onChange)="pathPicked()" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+        </tr>
+        <tr *ngIf="charSheet.background">
+          <td colspan="2">
+            <label class="characteristics-title">{{ capitalize(charSheet.background) }}</label>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="center">
+      <span class="characteristics-title">Class</span>
+      <div>
+        <label class="center subtitle">Info about campaign</label>
+        <table style="margin-left: 80px;">
+          <tr>
+            <td class="label"><label>Magic:</label></td>
+            <td><p-dropdown placeholder="How common is magic"  [options]="magicAmounts" [(ngModel)]="magicAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+          </tr>
+          <tr>
+            <td class="label"><label>Technology:</label></td>
+            <td><p-dropdown placeholder="How advanced is technology"  [options]="technologyAmounts" [(ngModel)]="technologyAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+          </tr>
+          <tr>
+            <td class="label"><label>Dark:</label></td>
+            <td><p-dropdown placeholder="How dark is your campaign"  [options]="darkAmounts" [(ngModel)]="darkAmount" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+          </tr>
+          <tr>
+            <td class="label"><label>Level:</label></td>
+            <td><p-dropdown placeholder="What's your party's level"  [options]="partyLevels" [(ngModel)]="level" optionLabel="name" styleClass="custom-dropdown"></p-dropdown></td>
+          </tr>
+        </table>
+      </div>
+      <div style="margin-top: 20px;">
+        <label class="center subtitle">Your team</label>
+        <table style="margin-left: -40px;">
+          <tr>
+            <td>
+              <button pButton label="Add teammate" icon="pi pi-plus" class="p-button-raised smaller-custom-button success-color" (click)="addTeammate()"></button>
+            </td>
+            <td>
+              <button pButton label="Remove teammate" icon="pi pi-minus" class="p-button-raised smaller-custom-button danger-color" (click)="removeTeammate()"></button>
+            </td>
+            <td></td>
+          </tr>
+          <ng-container *ngFor="let teammate of teammates; let i = index">
+            <tr>
+              <td>
+                <p-dropdown placeholder="Teammate {{ i + 1 }} class" [options]="teamClasses" [(ngModel)]="teammate.charClass" optionLabel="name" styleClass="smaller-custom-dropdown"></p-dropdown>
+              </td>
+              <td>
+                <p-dropdown placeholder="Teammate {{ i + 1 }} subclass" [disabled]="!teammate.charClass" [options]="getSubclasses(teammate.charClass)" [(ngModel)]="teammate.subClass" optionLabel="name" styleClass="smaller-custom-dropdown"></p-dropdown>
+              </td>
+              <td>
+                <p-multiSelect defaultLabel="Proficiencies" [options]="teamSkills" [(ngModel)]="teammate.skills" display="chip" optionLabel="name" styleClass="custom-multiselect"></p-multiSelect>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+    </div>
+  </div>
+  <p-dialog [(visible)]="displayCreationDoneModal" [modal]="true" [style]="{width: 'auto'}" [closable]="false"
+            [draggable]="false" [resizable]="false">
+    <app-completed (creationCompleted)="onComplete($event)" (modalClosed)="displayCreationDoneModal=false"></app-completed>
+    <ng-template pTemplate="footer">
+      <p-button icon="pi pi-file-pdf" [disabled]="true" (click)="exportAsPDF()" label="Export as pdf" styleClass="p-button-warning" pTooltip="Coming soon!" tooltipPosition="bottom"></p-button>
+      <p-button icon="pi pi-refresh pi-spin" (click)="displayCreationDoneModal=false" label="Redo" styleClass="p-button-success" pTooltip="Create another character" tooltipPosition="bottom"></p-button>
+    </ng-template>
+  </p-dialog>
+</div>
+

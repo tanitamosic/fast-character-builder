@@ -15,9 +15,9 @@ dialect  "mvel"
 // LONER
 rule "wayoflife_loner"
 no-loop true
-salience 50
+salience 101
     when
-        BackgroundParams(wayOfLife=="LONER")
+        BackgroundParams(wayOfLife==WayOfLife.LONER)
         $interests: ArrayList();
     then
         modify($interests){add(Interest.CITY_DWELLING)};
@@ -28,9 +28,10 @@ rule "interest_city"
 no-loop true
 salience 75
     when
-        BackgroundParams(wayOfLife=="LONER" && interest=="CITY_DWELLING")
+        BackgroundParams(wayOfLife==WayOfLife.LONER && interest==Interest.CITY_DWELLING)
         $paths: ArrayList();
     then
+        modify($paths){clear()};
         modify($paths){add(PathInLife.VIOLENCE)};
         modify($paths){add(PathInLife.PICKPOCKETING)};
         modify($paths){add(PathInLife.SWINDLING)};
@@ -38,9 +39,9 @@ end
 
 rule "CRIMINAL" // pathinlife==violence
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="LONER" && interest=="CITY_DWELLING" && path=="VIOLENCE")
+        BackgroundParams(wayOfLife==WayOfLife.LONER && interest==Interest.CITY_DWELLING && path==PathInLife.VIOLENCE)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.CRIMINAL)};
@@ -48,9 +49,9 @@ end
 
 rule "URCHIN" // pathinlife==pickpocketing
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="LONER" && interest=="CITY_DWELLING" && path=="PICKPOCKETING")
+        BackgroundParams(wayOfLife==WayOfLife.LONER && interest==Interest.CITY_DWELLING && path==PathInLife.PICKPOCKETING)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.URCHIN)};
@@ -58,9 +59,9 @@ end
 
 rule "CHARLATAN" // pathinlife==swindling
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="LONER" && interest=="CITY_DWELLING" && path=="SWINDLING")
+        BackgroundParams(wayOfLife==WayOfLife.LONER && interest==Interest.CITY_DWELLING && path==PathInLife.SWINDLING)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.CHARLATAN)};
@@ -68,9 +69,9 @@ end
 
 rule "HERMIT" // interest==nature, path==null
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="LONER" && interest=="NATURE_DWELLING")
+        BackgroundParams(wayOfLife==WayOfLife.LONER && interest==Interest.NATURE_DWELLING)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.HERMIT)};
@@ -80,9 +81,9 @@ end
 // ORGANIZATION MEMBER
 rule "wayoflife_org_member"
 no-loop true
-salience 50
+salience 101
     when
-        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER")
+        BackgroundParams(wayOfLife==WayOfLife.ORGANIZATION_MEMBER)
         $interests: ArrayList();
     then
         modify($interests){add(Interest.ARTISTIC)};
@@ -94,18 +95,19 @@ rule "interest_artistic"
 no-loop true
 salience 75
     when
-        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="ARTISTIC")
+        BackgroundParams(wayOfLife==WayOfLife.ORGANIZATION_MEMBER && interest==Interest.ARTISTIC)
         $paths: ArrayList();
     then
+        modify($paths){clear()};
         modify($paths){add(PathInLife.PERFORMER)};
         modify($paths){add(PathInLife.CRAFTSMAN)};
 end
 
 rule "ENTERTAINER" // path==performer
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="ARTISTIC" && path=="PERFORMER")
+        BackgroundParams(wayOfLife==WayOfLife.ORGANIZATION_MEMBER && interest==Interest.ARTISTIC && path==PathInLife.PERFORMER)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.ENTERTAINER)};
@@ -113,9 +115,9 @@ end
 
 rule "GUILD_ARTISAN" // path==PERFORMER
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="ARTISTIC" && path=="CRAFTSMAN")
+        BackgroundParams(wayOfLife==WayOfLife.ORGANIZATION_MEMBER && interest==Interest.ARTISTIC && path==PathInLife.CRAFTSMAN)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.GUILD_ARTISAN)};
@@ -123,9 +125,9 @@ end
 
 rule "ACOLYTE" // interest==religious
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="RELIGIOUS")
+        BackgroundParams(wayOfLife==WayOfLife.ORGANIZATION_MEMBER && interest==Interest.RELIGIOUS)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.ACOLYTE)};
@@ -135,18 +137,19 @@ rule "interest_violent"
 no-loop true
 salience 75
     when
-        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="VIOLENT")
+        BackgroundParams(wayOfLife==WayOfLife.ORGANIZATION_MEMBER && interest==Interest.VIOLENT)
         $paths: ArrayList();
     then
+        modify($paths){clear()};
         modify($paths){add(PathInLife.LAW_OBEYING)};
         modify($paths){add(PathInLife.LAW_BREAKING)};
 end
 
 rule "SOLIDER" // path=law_obeying
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="VIOLENT" && path=="LAW_OBEYING")
+        BackgroundParams(wayOfLife==WayOfLife.ORGANIZATION_MEMBER && interest==Interest.VIOLENT && path==PathInLife.LAW_OBEYING)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.SOLIDER)};
@@ -154,9 +157,9 @@ end
 
 rule "CRIMINAL_2"
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="ORGANIZATION_MEMBER" && interest=="VIOLENT" && path=="LAW_BREAKING")
+        BackgroundParams(wayOfLife==WayOfLife.ORGANIZATION_MEMBER && interest==Interest.VIOLENT && path==PathInLife.LAW_BREAKING)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.CRIMINAL)};
@@ -166,7 +169,7 @@ end
 // ONE PLACE
 rule "wayoflife_one_place"
 no-loop true
-salience 50
+salience 101
     when
         BackgroundParams(wayOfLife==WayOfLife.ONE_PLACE)
         $interests: ArrayList();
@@ -180,9 +183,10 @@ rule "interest_spiritual"
 no-loop true
 salience 75
     when
-        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="SPIRITUAL")
+        BackgroundParams(wayOfLife==WayOfLife.ONE_PLACE && interest==Interest.SPIRITUAL)
         $paths: ArrayList();
     then
+        modify($paths){clear()};
         modify($paths){add(PathInLife.TEMPLE_LIFE)};
         modify($paths){add(PathInLife.ISOLATED_LIFE)};
 end
@@ -191,18 +195,19 @@ rule "interest_academic"
 no-loop true
 salience 75
     when
-        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="ACADEMIC")
+        BackgroundParams(wayOfLife==WayOfLife.ONE_PLACE && interest==Interest.ACADEMIC)
         $paths: ArrayList();
     then
+        modify($paths){clear()};
         modify($paths){add(PathInLife.DEDICATED)};
         modify($paths){add(PathInLife.HIGHBORN)};
 end
 
 rule "ACOLYTE_2"
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="SPIRITUAL" && path=="TEMPLE_LIFE")
+        BackgroundParams(wayOfLife==WayOfLife.ONE_PLACE && interest==Interest.SPIRITUAL && path==PathInLife.TEMPLE_LIFE)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.ACOLYTE)};
@@ -210,9 +215,9 @@ end
 
 rule "HERMIT_2"
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="SPIRITUAL" && path=="ISOLATED_LIFE")
+        BackgroundParams(wayOfLife==WayOfLife.ONE_PLACE && interest==Interest.SPIRITUAL && path==PathInLife.ISOLATED_LIFE)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.HERMIT)};
@@ -220,9 +225,9 @@ end
 
 rule "SAGE"
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="ACADEMIC" && path=="DEDICATED")
+        BackgroundParams(wayOfLife==WayOfLife.ONE_PLACE && interest==Interest.ACADEMIC && path==PathInLife.DEDICATED)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.SAGE)};
@@ -230,9 +235,9 @@ end
 
 rule "NOBLE"
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="ONE_PLACE" && interest=="ACADEMIC" && path=="HIGHBORN")
+        BackgroundParams(wayOfLife==WayOfLife.ONE_PLACE && interest==Interest.ACADEMIC && path==PathInLife.HIGHBORN)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.NOBLE)};
@@ -242,9 +247,9 @@ end
 // WANDERING SPIRIT
 rule "wayoflife_wanderer"
 no-loop true
-salience 50
+salience 101
     when
-        BackgroundParams(wayOfLife=="WANDERING_SPIRIT")
+        BackgroundParams(wayOfLife==WayOfLife.WANDERING_SPIRIT)
         $interests: ArrayList();
     then
         modify($interests){add(Interest.FAMOUS)};
@@ -255,18 +260,19 @@ rule "interest_famous"
 no-loop true
 salience 75
     when
-        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="FAMOUS")
+        BackgroundParams(wayOfLife==WayOfLife.WANDERING_SPIRIT && interest==Interest.FAMOUS)
         $paths: ArrayList();
     then
+        modify($paths){clear()};
         modify($paths){add(PathInLife.TALENTED_PERFORMER)};
         modify($paths){add(PathInLife.BRAVE_HERO)};
 end
 
 rule "ENTERTAINER_2"
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="FAMOUS" && path=="TALENTED_PERFORMER")
+        BackgroundParams(wayOfLife==WayOfLife.WANDERING_SPIRIT && interest==Interest.FAMOUS && path==PathInLife.TALENTED_PERFORMER)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.ENTERTAINER)};
@@ -274,9 +280,9 @@ end
 
 rule "FOLK_HERO"
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="FAMOUS" && path=="BRAVE_HERO")
+        BackgroundParams(wayOfLife==WayOfLife.WANDERING_SPIRIT && interest==Interest.FAMOUS && path==PathInLife.BRAVE_HERO)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.FOLK_HERO)};
@@ -286,18 +292,19 @@ rule "interest_secluded"
 no-loop true
 salience 75
     when
-        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="SECLUDED")
+        BackgroundParams(wayOfLife==WayOfLife.WANDERING_SPIRIT && interest==Interest.SECLUDED)
         $paths: ArrayList();
     then
+        modify($paths){clear()};
         modify($paths){add(PathInLife.THE_WILDS)};
         modify($paths){add(PathInLife.THE_SEA)};
 end
 
 rule "OUTLANDER"
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="SECLUDED" && path=="THE_WILDS")
+        BackgroundParams(wayOfLife==WayOfLife.WANDERING_SPIRIT && interest==Interest.SECLUDED && path==PathInLife.THE_WILDS)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.OUTLANDER)};
@@ -305,9 +312,9 @@ end
 
 rule "SAILOR"
 no-loop true
-salience 100
+salience 102
     when
-        BackgroundParams(wayOfLife=="WANDERING_SPIRIT" && interest=="SECLUDED" && path=="THE_SEA")
+        BackgroundParams(wayOfLife==WayOfLife.WANDERING_SPIRIT && interest==Interest.SECLUDED && path==PathInLife.THE_SEA)
         $cs: CharSheet()
     then
         modify($cs){setBackground(Background.SAILOR)};
