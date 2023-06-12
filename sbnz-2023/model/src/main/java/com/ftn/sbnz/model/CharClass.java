@@ -23,5 +23,6 @@ public enum CharClass {
     public String getDisplayName() {
         return displayName;
     }
+    public String getEnumString() {return "CharClass." + getDisplayName().toUpperCase();}
 
 }

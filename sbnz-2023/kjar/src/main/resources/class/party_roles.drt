@@ -1,16 +1,22 @@
 template header
-charclass
+charClass
+subclass
 roles
 
-package class
+import com.ftn.sbnz.model.PartyMemberDTO;
+import com.ftn.sbnz.model.CharClass;
+import com.ftn.sbnz.model.Subclass;
+
+global StringBuilder partyRoles;
+
+template "party_roles"
 
 rule "Collect Party Member Roles_@{row.rowNumber}"
 no-loop true
 when
-    $pm: PartyMember(charClass == @{charclass}, $roles)
-    $partyRoles: ArrayList<Role>()
+    $pm: PartyMemberDTO(charClass == @{charClass}, subclass == @{subclass})
 then
-    modify($partyRoles){$partyRoles.addAll($roles)};
+    partyRoles = partyRoles.append("@{roles}");
 end
 
 end template

@@ -58,8 +58,10 @@ public enum Subclass{
     DIVINATION(CharClass.WIZARD, "School of Divination"),
     EVOCATION(CharClass.WIZARD, "School of Evocation"),
     NECROMANCY(CharClass.WIZARD, "School of Necromancy"),
-    WAR_MAGIC(CharClass.WIZARD, "War Magic")
+    WAR_MAGIC(CharClass.WIZARD, "War Magic"),
+    NO_SUBCLASS(null,"No Subclass")
     ;
+
     private final String name;
     private final CharClass charClass;
 
@@ -71,4 +73,5 @@ public enum Subclass{
     public String getDisplayName() {
         return name + " " + charClass.getDisplayName();
     }
+    public String getEnumString() {return "Subclass." + this.toString();}
 }

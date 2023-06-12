@@ -4,6 +4,8 @@ roles
 
 package class
 
+template "subclass_roles"
+
 rule "Collect Party Member Roles_@{row.rowNumber}"
 no-loop true
 when

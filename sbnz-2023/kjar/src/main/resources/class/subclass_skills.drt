@@ -4,6 +4,8 @@ skills
 
 package class
 
+template "subclass_skills"
+
 rule "Collect Party Member Skills_@{row.rowNumber}"
 no-loop true
 when

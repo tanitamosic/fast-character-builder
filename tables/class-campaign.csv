@@ -5,7 +5,7 @@ artificer artillerist,low,high,mid
 barbarian ,none,low,mid
 barbarian beast,none,low,mid
 barbarian berserker,none,low,mid
-barbarian totem warrior,none,low,high
+barbarian totem_warrior,none,low,high
 barbarian zealot,none,low,high
 bard,mid,low,mid
 bard lore,mid,low,high
@@ -22,37 +22,37 @@ druid land,mid,low,mid
 druid dreams,mid,low,low
 fighter,none,mid,mid
 fighter champion,none,low,mid
-fighter battle master,none,low,high
-fighter eldrich knight,mid,low,high
+fighter battle_master,none,low,high
+fighter eldrich_knight,mid,low,high
 monk,none,low,mid
-monk drunken master,none,low,mid
+monk drunken_master,none,low,mid
 monk kensei,none,low,mid
-monk open hand,none,low,mid
+monk open_hand,none,low,mid
 paladin,mid,low,mid
 paladin ancients,mid,low,low
 paladin devotion,mid,low,low
 ranger,low,mid,high
 ranger hunter,low,low,high
-ranger gloom stalker,low,low,full
-ranger horizon walker,low,mid,mid
+ranger gloom ,low,low,full
+ranger horizon,low,mid,mid
 rogue,none,mid,high
 rogue assassin,none,mid,high
-rogue arcane trickster,mid,mid,high
+rogue arcane_trickster,mid,mid,high
 rogue swashbuckler,low,mid,mid
 rogue theif,none,mid,mid
 sorcerer,high,low,mid
 sorcerer draconic,high,low,mid
-sorcerer divine soul,high,low,mid
-sorcerer shadow magic,high,low,high
-sorcerer wild magic,high,low,mid
+sorcerer divine_soul,high,low,mid
+sorcerer shadow,high,low,high
+sorcerer wild,high,low,mid
 warlock,mid,low,high
 warlock archfey,high,low,mid
 warlock fiend,high,low,high
-warlock great old one,high,low,high
+warlock great_old_one,high,low,high
 wizard,high,mid,mid
 wizard evocation,high,high,high
 wizard abjuration,high,mid,mid
 wizard conjuration,high,mid,mid
 wizard divination,high,mid,mid
-wizard war magic,high,mid,high
+wizard war_magic,high,mid,high
 wizard necromancy,high,mid,full

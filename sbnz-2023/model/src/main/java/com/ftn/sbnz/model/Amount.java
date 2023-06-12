@@ -5,5 +5,9 @@ public enum Amount {
     LOW,
     MID,
     HIGH,
-    FULL
+    FULL;
+
+    public String getEnumString(){
+        return "Amount." + this.toString();
+    }
 }

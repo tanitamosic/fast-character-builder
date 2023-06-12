@@ -1,18 +1,22 @@
 template header
-charclass
+charClass
+subclass
 skills
 
-package class
+import com.ftn.sbnz.model.PartyMemberDTO;
+import com.ftn.sbnz.model.CharClass;
+import com.ftn.sbnz.model.Subclass;
+
+template "party_skills"
 
 rule "Collect Party Member Skills_@{row.rowNumber}"
 no-loop true
 when
-    $pm: PartyMemberSkillModel(charClass == @{charclass}, $skills)
-    $partySkills: ArrayList<Skill>()
+    $pm: PartyMemberSkillModel(charClass == @{charClass}, subclass == @{subclass})
+    $partySkills: String()
 then
-    modify($partySkills){$partySkills.addAll($skills)};
+    modify($partySkills){concat("@{skills}")};
 end
 
 end template
-
 
