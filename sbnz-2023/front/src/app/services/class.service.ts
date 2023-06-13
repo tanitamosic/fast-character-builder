@@ -7,4 +7,8 @@ import {HttpClient} from "@angular/common/http";
 export class ClassService {
 
   constructor(private httpClient: HttpClient) { }
+
+  postParty(party: any) {
+    return this.httpClient.post('/dnd/class/party', party);
+  }
 }

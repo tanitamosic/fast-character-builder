@@ -1,14 +1,14 @@
 <div [style]="{ width: '650px', height: 'auto' }" class="custom-card" >
   <div class="container">
     <div class="center">
-      <img alt="Character image" src="{{characterImage}}" class="character" />
+      <img alt="No character image available" src="{{getCharacterImage()}}" class="character" />
     </div>
     <div class="center">
       <div style="text-align: left;">
-        <p>Race: <i>Tiefling, Lavander</i></p>
-        <p>Background: <i>Entertainer</i></p>
-        <p>Class: <i>College of Lore Bard</i></p>
-        <p>Proficiencies: <i>{{proficiencies.join(', ')}}</i></p>
+        <p>Race: <i>{{ capitalize(this.charSheet.getRace()) }}</i></p>
+        <p>Background: <i>{{ capitalize(this.charSheet.getBackground()) }}</i></p>
+        <p>Class: <i>{{ capitalize(this.charSheet.getCharClass() + ' ' + this.charSheet.getSubClass()) }}</i></p>
+        <p>Proficiencies: <i>{{this.charSheet.getProficiencies()}}</i></p>
       </div>
       <div>
         <table style="border-collapse: collapse; border: 1px solid black;">
@@ -18,27 +18,27 @@
           </tr>
           <tr>
             <td class="stats">Strength</td>
-            <td class="stats">10</td>
+            <td class="stats">{{ getScore('STRENGTH') }}</td>
           </tr>
           <tr>
             <td class="stats">Dexterity</td>
-            <td class="stats">15</td>
+            <td class="stats">{{getScore('DEXTERITY')}}</td>
           </tr>
           <tr>
             <td class="stats">Constitution</td>
-            <td class="stats">14</td>
+            <td class="stats">{{getScore('CONSTITUTION')}}</td>
           </tr>
           <tr>
             <td class="stats">Intelligence</td>
-            <td class="stats">13</td>
+            <td class="stats">{{getScore('INTELLIGENCE')}}</td>
           </tr>
           <tr>
             <td class="stats">Wisdom</td>
-            <td class="stats">10</td>
+            <td class="stats">{{getScore('WISDOM')}}</td>
           </tr>
           <tr>
             <td class="stats">Charisma</td>
-            <td class="stats">18</td>
+            <td class="stats">{{getScore('CHARISMA')}}</td>
           </tr>
         </table>
       </div>

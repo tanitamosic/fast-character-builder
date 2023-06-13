@@ -313,7 +313,7 @@ end
 
 rule "FIRBOLG"
 no-loop true
-salience 220
+salience 320
     when
         RaceParams(size==Size.TALL, disposition == Disposition.GENTLE || disposition == Disposition.CHILL)
         $cs: CharSheet()
@@ -323,7 +323,7 @@ end
 
 rule "DRAGONBORN_snobby"
 no-loop true
-salience 230
+salience 330
     when
         $rp: RaceParams(size==Size.TALL, disposition == Disposition.SNOBBY)
         $cs: CharSheet()
@@ -337,7 +337,7 @@ end
 
 rule "DRAGONBORN_hardworking"
 no-loop true
-salience 231
+salience 331
     when
         $rp: RaceParams(size==Size.TALL, disposition == Disposition.HARDWORKING)
         $cs: CharSheet()
@@ -348,7 +348,7 @@ end
 
 rule "natural_skintone"
 no-loop true
-salience 10
+salience 450
     when
         $cs: CharSheet(race==Race.HALFLING || race==Race.HUMAN || race==Race.DWARF ||
         race==Race.ELF || race==Race.HALF_ELF || race==Race.AASIMAR)
@@ -361,7 +361,7 @@ end
 
 rule "underdark_skintone"
 no-loop true
-salience 20
+salience 450
     when
         $cs: CharSheet(race==Race.DROW || race==Race.DUEARGAR || race==Race.HALF_DROW)
         $skins: ArrayList()
@@ -372,7 +372,7 @@ end
 
 rule "chromatic_scales_skintone"
 no-loop true
-salience 30
+salience 450
     when
         $rp: RaceParams(pallette==ColorPallette.CHROMATIC_SCALES)
         $skins: ArrayList()
@@ -386,7 +386,7 @@ end
 
 rule "metallic_scales_skintone"
 no-loop true
-salience 35
+salience 450
     when
         $rp: RaceParams(pallette==ColorPallette.METALLIC_SCALES)
         $skins: ArrayList()
@@ -400,7 +400,7 @@ end
 
 rule "firbolg_skintone"
 no-loop true
-salience 40
+salience 450
     when
         $cs: CharSheet(race==Race.FIRBOLG)
         $skins: ArrayList()
@@ -413,7 +413,7 @@ end
 
 rule "tiefling_skintone"
 no-loop true
-salience 50
+salience 450
     when
         $cs: CharSheet(race==Race.TIEFLING)
         $skins: ArrayList()
@@ -424,7 +424,7 @@ end
 
 rule "goblin_skintone"
 no-loop true
-salience 60
+salience 450
     when
         $cs: CharSheet(race==Race.GOBLIN || race==Race.HALF_ORC)
         $skins: ArrayList()

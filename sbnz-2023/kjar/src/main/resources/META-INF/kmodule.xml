@@ -5,4 +5,7 @@
     <kbase name="raceKbase" packages="race">
         <ksession name="raceKSession"/>
     </kbase>
+    <kbase name="abilityKbase" packages="ability">
+        <ksession name="abilityKSession"/>
+    </kbase>
 </kmodule>

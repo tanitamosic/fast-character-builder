@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BackgroundService} from "../services/background.service";
 import {ClassService} from "../services/class.service";
 import {RaceService} from "../services/race.service";
+import {CharSheet} from "../model/CharSheet";
 
 interface Size {
   name: string;
@@ -86,20 +87,16 @@ class Teammate {
   }
 
   getDto() {
+    let skillEnums: string[] = []
+    this.skills.forEach((s) => {
+      skillEnums.push(s.skill)
+    })
     return {
       charClass: this.charClass.charClass,
       subClass: this.subClass.subClass,
-      skills: this.skills
+      skills: skillEnums
     }
   }
-}
-
-
-
-class CharSheet {
-  background: string | undefined;
-  race: string | undefined;
-  charClass: string | undefined;
 }
 
 class BackgroundParams {
@@ -145,7 +142,7 @@ export class HomeComponent implements OnInit {
 
   // GLOBALS
   creationStarted = true;
-  charSheet: CharSheet = {background: undefined, charClass: undefined, race: undefined}
+  charSheet: CharSheet = new CharSheet();
 
   backgroundParams: BackgroundParams = {wayOfLife: undefined, interest: undefined, path: undefined, integer: undefined}
   backgroundWrapper: BackgroundWrapper = {charSheet: this.charSheet, backgroundParams: this.backgroundParams, nextOptions: []}
@@ -167,6 +164,8 @@ export class HomeComponent implements OnInit {
   skintone: any;
   build: any;
 
+  skinColor: string | undefined;
+
   // BACKGROUND
   waysOfLife: WayOfLife[] = [{name: 'Wandering spirit', origin: 'WANDERING_SPIRIT'}, {name: 'Loner', origin: 'LONER'}, {name: 'One place', origin: 'ONE_PLACE'}, {name: 'Organization member', origin: 'ORGANIZATION_MEMBER'}];
   wayOfLife: any;
@@ -176,9 +175,9 @@ export class HomeComponent implements OnInit {
   path: any;
 
   // CLASS
-  magicAmounts: Amount[] = [{name: 'Not at all', amount: 'None'}, {name: 'A little', amount: 'Low'}, {name: 'A decent amount', amount: 'Mid'}, {name: 'High magic', amount: 'High'}, {name: 'Spellcasters only', amount: 'Full'}]
-  technologyAmounts: Amount[] = [{name: 'Not at all', amount: 'None'}, {name: 'A little', amount: 'Low'}, {name: 'A decent amount', amount: 'Mid'}, {name: 'Modern', amount: 'High'}, {name: 'Futuristic', amount: 'Full'}]
-  darkAmounts: Amount[] = [{name: 'Not at all', amount: 'None'}, {name: 'A little', amount: 'Low'}, {name: 'A decent amount', amount: 'Mid'}, {name: 'Very', amount: 'High'}, {name: 'We are the bad guys', amount: 'Full'}]
+  magicAmounts: Amount[] = [{name: 'Not at all', amount: 'NONE'}, {name: 'A little', amount: 'LOW'}, {name: 'A decent amount', amount: 'MID'}, {name: 'High magic', amount: 'HIGH'}, {name: 'Spellcasters only', amount: 'FULL'}]
+  technologyAmounts: Amount[] = [{name: 'Not at all', amount: 'NONE'}, {name: 'A little', amount: 'LOW'}, {name: 'A decent amount', amount: 'MID'}, {name: 'Modern', amount: 'HIGH'}, {name: 'Futuristic', amount: 'FULL'}]
+  darkAmounts: Amount[] = [{name: 'Not at all', amount: 'NONE'}, {name: 'A little', amount: 'LOW'}, {name: 'A decent amount', amount: 'MID'}, {name: 'Very', amount: 'HIGH'}, {name: 'We are the bad guys', amount: 'FULL'}]
   partyLevels: PartyLevel[] = [{name: '1', level: 1}, {name: '2', level: 2}, {name: '3', level: 3}];
   magicAmount: any;
   technologyAmount: any;
@@ -288,6 +287,15 @@ export class HomeComponent implements OnInit {
   wayDisabled: boolean = false;
   interestDisabled: boolean = false;
   pathDisabled: boolean = false;
+  magicDisabled: boolean = false;
+  techDisabled: boolean = false;
+  darkDisabled: boolean = false;
+  levelDisabled: boolean = false;
+  addDisabled: boolean = false;
+  removeDisabled: boolean = false;
+  teammateDisabled: boolean = false;
+  finishDisabled: boolean = false;
+
 
 
 
@@ -336,7 +344,7 @@ export class HomeComponent implements OnInit {
       this.interestDisabled = true;
       this.backgroundWrapper = backgroundWrapper;
       this.showPath = true;
-
+      this.onComplete();
     });
   }
 
@@ -350,6 +358,7 @@ export class HomeComponent implements OnInit {
       this.pathDisabled = true;
       this.backgroundWrapper = backgroundWrapper;
       this.charSheet.background = backgroundWrapper.charSheet.background;
+      this.onComplete();
     });
   }
 
@@ -380,7 +389,7 @@ export class HomeComponent implements OnInit {
       this.fillDropdown(raceWrapper);
       this.dispositionDisabled = true;
       this.raceWrapper = raceWrapper;
-
+      this.onComplete();
     });
   }
 
@@ -397,12 +406,14 @@ export class HomeComponent implements OnInit {
       this.fillDropdown(raceWrapper);
       this.paletteDisabled = true;
       this.raceWrapper = raceWrapper;
+      this.onComplete();
     })
   }
 
   skintonePicked() {
     this.raceWrapper.nextOptions = []
     this.raceWrapper.raceParams.skintone = this.skintone.color;
+    this.skinColor = this.skintone.color;
     const request = this.raceService.getNewOptions(this.raceWrapper);
     request.subscribe((res) => {
       console.log(res);
@@ -413,6 +424,7 @@ export class HomeComponent implements OnInit {
       this.fillDropdown(raceWrapper);
       this.skinDisabled = true;
       this.raceWrapper = raceWrapper;
+      this.onComplete();
     })
   }
 
@@ -429,6 +441,7 @@ export class HomeComponent implements OnInit {
       this.fillDropdown(raceWrapper);
       this.buildDisabled = true;
       this.raceWrapper = raceWrapper;
+      this.onComplete();
     })
   }
 
@@ -445,11 +458,12 @@ export class HomeComponent implements OnInit {
       this.fillDropdown(raceWrapper);
       this.featuresDisabled = true;
       this.raceWrapper = raceWrapper;
+      this.onComplete();
     })
   }
 
   addTeammate() {
-    if (this.teammates.length === 10) return;
+    if (this.teammates.length === 6) return;
     this.teammates.push(new Teammate({charClass: undefined, subClass: undefined, skills: []})); // Add a new teammate object
   }
 
@@ -468,13 +482,9 @@ export class HomeComponent implements OnInit {
     return subclasses;
   }
 
-  onClassChange(i: number) {
-    let t = this.teammates.at(i);
-    console.log(t);
-  }
-
-  onComplete($event: boolean) {
-    // TODO: IMPLEMENT
+  onComplete() {
+    if (!this.charSheet.isReady()) { return; }
+    this.displayCreationDoneModal = true;
   }
 
   exportAsPDF() {
@@ -517,8 +527,61 @@ export class HomeComponent implements OnInit {
   }
 
   capitalize(str: string): string {
+    // Ostavlja samo prvo slovo kapitalno, i zamnenjuje '_' razmacima ' '
     str = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     return str.replace(/_/g, " ")
   }
 
+  determineClass() {
+    if (this.magicAmount == undefined || this.technologyAmount == undefined || this.darkAmount == undefined || this.level == undefined)
+    {
+      alert('You have to at least pick your campaign stats');
+      return;
+    }
+    if (this.teammates.length <= 0) {
+      alert('You must have at least one teammate defined')
+      return;
+    }
+
+    let campaign = {
+      magic: this.magicAmount.amount,
+      tech: this.technologyAmount.amount,
+      dark: this.darkAmount.amount
+    }
+    let partyMembers: any = []
+    this.teammates.forEach((t) => {
+      partyMembers.push(t.getDto())
+    });
+
+    let party = {
+      partyMembers,
+      campaign,
+      level: this.level.level
+    }
+
+    const request = this.classService.postParty(party);
+    request.subscribe((res) => {
+      let charSheet = res as CharSheet;
+      this.charSheet.charClass = charSheet.charClass;
+      this.charSheet.subclass = charSheet.subclass;
+      this.charSheet.proficiencies = charSheet.proficiencies;
+      this.charSheet.abilityScores = charSheet.abilityScores;
+
+      this.magicDisabled = true;
+      this.techDisabled = true;
+      this.darkDisabled = true;
+      this.levelDisabled = true;
+      this.addDisabled = true;
+      this.removeDisabled = true;
+      this.teammateDisabled = true;
+      this.finishDisabled = true;
+
+      this.onComplete()
+    });
+  }
+
+  redo() {
+    this.displayCreationDoneModal = false;
+    location.reload();
+  }
 }
