@@ -106,7 +106,7 @@
                 <p-dropdown placeholder="Teammate {{ i + 1 }} class" [disabled]="teammateDisabled" [options]="teamClasses" [(ngModel)]="teammate.charClass" optionLabel="name" styleClass="smaller-custom-dropdown"></p-dropdown>
               </td>
               <td>
-                <p-dropdown placeholder="Teammate {{ i + 1 }} subclass" [disabled]="!teammate.charClass" [options]="getSubclasses(teammate.charClass)" [(ngModel)]="teammate.subClass" optionLabel="name" styleClass="smaller-custom-dropdown"></p-dropdown>
+                <p-dropdown placeholder="Teammate {{ i + 1 }} subclass" [disabled]="!teammate.charClass || teammateDisabled" [options]="getSubclasses(teammate.charClass)" [(ngModel)]="teammate.subClass" optionLabel="name" styleClass="smaller-custom-dropdown"></p-dropdown>
               </td>
               <td>
                 <p-multiSelect defaultLabel="Proficiencies" [disabled]="teammateDisabled" [options]="teamSkills" [(ngModel)]="teammate.skills" display="chip" optionLabel="name" styleClass="custom-multiselect"></p-multiSelect>

@@ -93,7 +93,7 @@ class Teammate {
     })
     return {
       charClass: this.charClass.charClass,
-      subClass: this.subClass.subClass,
+      subclass: this.subClass.subClass,
       skills: skillEnums
     }
   }
@@ -156,7 +156,7 @@ export class HomeComponent implements OnInit {
   colorPalettes: ColorPalette[] = [];
   features: Feature[] = [];
   skinTones: Skintone[] = [];
-  builds: Build[] = [{name: 'Lean', build: 'LEAN'}, {name: 'Stocky', build: 'STOCKY'}, {name: 'Slight', build: 'SLIGHT'}, {name: 'Broad', build: 'BROAD'}];
+  builds: Build[] = []; // {name: 'Lean', build: 'LEAN'}, {name: 'Stocky', build: 'STOCKY'}, {name: 'Slight', build: 'SLIGHT'}, {name: 'Broad', build: 'BROAD'}
   size: any;
   disposition: any;
   palette: any;
@@ -548,13 +548,13 @@ export class HomeComponent implements OnInit {
       tech: this.technologyAmount.amount,
       dark: this.darkAmount.amount
     }
-    let partyMembers: any = []
+    let members: any = []
     this.teammates.forEach((t) => {
-      partyMembers.push(t.getDto())
+      members.push(t.getDto())
     });
 
     let party = {
-      partyMembers,
+      members,
       campaign,
       level: this.level.level
     }

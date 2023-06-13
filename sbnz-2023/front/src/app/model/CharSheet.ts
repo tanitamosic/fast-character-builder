@@ -28,7 +28,7 @@ export class CharSheet {
     return this.subclass === undefined ? '' : this.subclass
   }
   getProficiencies() {
-    return this.proficiencies === undefined ? '' : this.proficiencies.join(', ')
+    return this.proficiencies === undefined ? [] : this.proficiencies
   }
 
   isReady(): boolean {

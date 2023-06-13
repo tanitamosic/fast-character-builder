@@ -174,7 +174,6 @@ salience 101
         BackgroundParams(wayOfLife==WayOfLife.ONE_PLACE)
         $interests: ArrayList();
     then
-        System.out.println("ovddeeeee");
         modify($interests){add(Interest.SPIRITUAL)};
         modify($interests){add(Interest.ACADEMIC)};
 end

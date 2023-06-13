@@ -8,7 +8,7 @@
         <p>Race: <i>{{ capitalize(this.charSheet.getRace()) }}</i></p>
         <p>Background: <i>{{ capitalize(this.charSheet.getBackground()) }}</i></p>
         <p>Class: <i>{{ capitalize(this.charSheet.getCharClass() + ' ' + this.charSheet.getSubClass()) }}</i></p>
-        <p>Proficiencies: <i>{{this.charSheet.getProficiencies()}}</i></p>
+        <p>Proficiencies: <i>{{ capitalizeAll(this.charSheet.getProficiencies())}}</i></p>
       </div>
       <div>
         <table style="border-collapse: collapse; border: 1px solid black;">

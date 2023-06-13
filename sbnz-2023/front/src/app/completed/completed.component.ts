@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CharSheet} from "../model/CharSheet";
 
 @Component({
@@ -23,6 +23,15 @@ export class CompletedComponent implements OnInit {
     return str.replace(/_/g, " ")
   }
 
+  capitalizeAll(strList: string[]) {
+    let retval = ''
+    strList.forEach((s) => {
+      retval += this.capitalize(s) + ', '
+    })
+    return retval.slice(0, retval.length - 2);
+  }
+
+
   getCharacterImage() {
     let race = this.charSheet?.race?.toLowerCase();
     let skinColor = this.skinColor?.toLowerCase();
@@ -31,7 +40,9 @@ export class CompletedComponent implements OnInit {
   }
 
   getScore(ability: string) {
-    return this.charSheet?.abilityScores?[ability] : -1
+    if (this.charSheet === undefined) return;
+    if (this.charSheet.abilityScores === undefined) return;
+    return this.charSheet.abilityScores[ability]
   }
 
 }

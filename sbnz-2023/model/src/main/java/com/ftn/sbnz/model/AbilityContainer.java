@@ -1,32 +1,44 @@
 package com.ftn.sbnz.model;
 
+import org.kie.api.definition.type.Position;
+
 public class AbilityContainer {
 
-    public String ability;
-    public String charClass;
-    public String skill;
+    @Position(0)
+    public String part;
+//    public String charClass;
+    @Position(1)
+    public String whole;
 
-    public String getAbility() {
-        return ability;
+    public String getPart() {
+        return part;
     }
 
-    public void setAbility(String ability) {
-        this.ability = ability;
+    public void setPart(String part) {
+        this.part = part;
     }
 
-    public String getCharClass() {
-        return charClass;
+//    public String getCharClass() {
+//        return charClass;
+//    }
+//
+//    public void setCharClass(String charClass) {
+//        this.charClass = charClass;
+//    }
+
+    public String getWhole() {
+        return whole;
     }
 
-    public void setCharClass(String charClass) {
-        this.charClass = charClass;
+    public void setWhole(String whole) {
+        this.whole = whole;
     }
 
-    public String getSkill() {
-        return skill;
+    public AbilityContainer(String part, String whole) {
+        this.part = part;
+        this.whole = whole;
     }
 
-    public void setSkill(String skill) {
-        this.skill = skill;
+    public AbilityContainer() {
     }
 }

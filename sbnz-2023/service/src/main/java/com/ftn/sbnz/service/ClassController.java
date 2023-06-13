@@ -19,10 +19,10 @@ public class ClassController {
     ClassService classService;
 
     @PostMapping("/party")
-    public ResponseEntity<String> postParty(@RequestBody PartyDTO dto){
-        PartyDTO mock = mockParty();
-        CharSheet charSheet = classService.getCharSheet(mock);
-        return ResponseEntity.ok("sve ok");
+    public ResponseEntity<CharSheet> postParty(@RequestBody PartyDTO dto){
+//        PartyDTO mock = mockParty();
+        CharSheet charSheet = classService.getCharSheet(dto);
+        return ResponseEntity.ok(charSheet);
     }
 
     private PartyDTO mockParty() {

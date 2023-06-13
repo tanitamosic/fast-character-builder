@@ -176,7 +176,7 @@ rule "HALF-ORC"
 no-loop true
 salience 120
     when
-        RaceParams(size==Size.MEDIUM, pallette==ColorPallette.UNNATURAL, build == "STOCKY" || build==Build.BROAD)
+        RaceParams(size==Size.MEDIUM, pallette==ColorPallette.UNNATURAL, build == Build.STOCKY || build==Build.BROAD)
         $cs: CharSheet()
     then
         modify($cs){setRace(Race.HALF_ORC)};

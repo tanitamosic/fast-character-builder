@@ -2,6 +2,7 @@ package com.ftn.sbnz.service;
 
 import com.ftn.sbnz.model.*;
 import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,14 @@ public class ClassService {
     RoleService roleService;
     @Autowired
     CampaignService campaignService;
+
+    private static final HashMap<String, List<String>> abilitySkills = new HashMap<>() {{
+        put(Ability.STRENGTH.toString(), Arrays.asList(Skill.ATHLETICS.toString()));
+        put(Ability.DEXTERITY.toString(), Arrays.asList(Skill.ACROBATICS.toString(), Skill.SLEIGH_OF_HAND.toString(), Skill.STEALTH.toString()));
+        put(Ability.INTELLIGENCE.toString(), Arrays.asList(Skill.ARCANA.toString(), Skill.HISTORY.toString(), Skill.INVESTIGATION.toString(),  Skill.NATURE.toString(), Skill.RELIGION.toString()));
+        put(Ability.WISDOM.toString(), Arrays.asList(Skill.ANIMAL_HANDLING.toString(), Skill.INSIGHT.toString(), Skill.MEDICINE.toString(),  Skill.PERCEPTION.toString(), Skill.SURVIVAL.toString()));
+        put(Ability.CHARISMA.toString(), Arrays.asList(Skill.DECEPTION.toString(), Skill.INTIMIDATION.toString(), Skill.PERFORMANCE.toString(),  Skill.PERSUASION.toString()));
+    }};
 
     public Subclass getCharClass(PartyDTO party) {
         HashMap<Role, Integer> partyRoles = roleService.getPartyRoles(party.members);
@@ -77,8 +86,30 @@ public class ClassService {
     }
 
     private HashMap<Ability, Integer> getAbilityScores(CharClass charClass, ArrayList<Skill> proficiencies) {
-        return null;
-        //BACKWARD
+        KieSession ksession = kieContainer.newKieSession("abilityKSession");
+        HashMap<Ability, Integer> abilityScores = new HashMap<>();
+        ksession.insert(abilityScores);
+
+        for (Skill s: proficiencies) {
+            ksession.insert(new AbilityContainer(s.toString(), charClass.toString()));
+            for (String ability: abilitySkills.keySet()) {
+                if (abilitySkills.get(ability).contains(s.toString()))
+                {
+                    ksession.insert(new AbilityContainer(ability, s.toString()));
+                }
+            }
+        }
+        ksession.fireAllRules();
+
+//        ksession.insert(new AbilityContainer("podklasa2", "Klasa"));
+//
+//        ksession.insert(new AbilityContainer("DEX", "podklasa1"));
+//        ksession.insert(new AbilityContainer("STR", "podklasa1"));
+//        ksession.insert(new AbilityContainer("INT", "podklasa2"));
+//        ksession.insert(new AbilityContainer("CHA", "podklasa2"));
+
+
+        return abilityScores;
     }
 
     private ArrayList<Skill> getProficiencies(ArrayList<PartyMemberDTO> members, CharClass charClass ) {
