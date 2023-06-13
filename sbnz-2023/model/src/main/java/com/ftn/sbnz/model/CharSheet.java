@@ -20,6 +20,7 @@ public class CharSheet {
     Subclass subclass;
     List<Skill> proficiencies;
     HashMap<Ability, Integer> abilityScores;
+    String classString;
 
     public CharSheet(Background background, Race race, CharClass charClass) {
         this.background = background;
@@ -27,11 +28,13 @@ public class CharSheet {
         this.charClass = charClass;
     }
 
-    public CharSheet(CharClass charClass, Subclass subclass, ArrayList<Skill> proficiencies, HashMap<Ability, Integer> abilityScores){
+    public CharSheet(CharClass charClass, Subclass subclass, ArrayList<Skill> proficiencies,
+                     HashMap<Ability, Integer> abilityScores, String classString){
         this.charClass = charClass;
         this.subclass = subclass;
         this.proficiencies = proficiencies;
         this.abilityScores = abilityScores;
+        this.classString = classString;
     }
 
     
