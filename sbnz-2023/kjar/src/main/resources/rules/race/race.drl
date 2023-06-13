@@ -75,7 +75,7 @@ rule "DWARF_hardowrking"
 no-loop true
 salience 121
     when
-        $bp: RaceParams(size==Size.SHORT && disposition == Disposition.HARDWORKING, feature==Feature.POINTY_EARS)
+        $bp: RaceParams(size==Size.SHORT && disposition == Disposition.HARDWORKING, feature==Feature.NO_POINTY_EARS)
         $cs: CharSheet()
 //        $targetFeature: Feature.POINTY_EARS
     then
@@ -86,7 +86,7 @@ rule "GNOME"
 no-loop true
 salience 122
     when
-        RaceParams(size==Size.SHORT && disposition == Disposition.HARDWORKING, feature==Feature.NO_POINTY_EARS)
+        RaceParams(size==Size.SHORT && disposition == Disposition.HARDWORKING, feature==Feature.POINTY_EARS)
         $cs: CharSheet()
 //        $targetFeature: Feature.POINTY_EARS
 //        not(exists(Feature(this==Feature.POINTY_EARS) from $features))
