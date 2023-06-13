@@ -7,7 +7,7 @@
       <div style="text-align: left;">
         <p>Race: <i>{{ capitalize(this.charSheet.getRace()) }}</i></p>
         <p>Background: <i>{{ capitalize(this.charSheet.getBackground()) }}</i></p>
-        <p>Class: <i>{{ capitalize(this.charSheet.getCharClass() + ' ' + this.charSheet.getSubClass()) }}</i></p>
+        <p>Class: <i>{{ this.charSheet.getClassString() }}</i></p>
         <p>Proficiencies: <i>{{ capitalizeAll(this.charSheet.getProficiencies())}}</i></p>
       </div>
       <div>

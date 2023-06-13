@@ -5,6 +5,7 @@ export class CharSheet {
   subclass: string | undefined;
   proficiencies: string[] | undefined;
   abilityScores: { [key: string]: number } | undefined;
+  classString: string | undefined;
 
   constructor() {
     this.background = undefined;
@@ -13,6 +14,7 @@ export class CharSheet {
     this.subclass = undefined;
     this.proficiencies = undefined;
     this.abilityScores = undefined;
+    this.classString = undefined;
   }
 
   getBackground() {
@@ -26,6 +28,9 @@ export class CharSheet {
   }
   getSubClass() {
     return this.subclass === undefined ? '' : this.subclass
+  }
+  getClassString() {
+    return this.classString === undefined ? '' : this.classString
   }
   getProficiencies() {
     return this.proficiencies === undefined ? [] : this.proficiencies

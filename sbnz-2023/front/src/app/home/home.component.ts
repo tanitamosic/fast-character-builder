@@ -566,6 +566,7 @@ export class HomeComponent implements OnInit {
       this.charSheet.subclass = charSheet.subclass;
       this.charSheet.proficiencies = charSheet.proficiencies;
       this.charSheet.abilityScores = charSheet.abilityScores;
+      this.charSheet.classString = charSheet.classString;
 
       this.magicDisabled = true;
       this.techDisabled = true;

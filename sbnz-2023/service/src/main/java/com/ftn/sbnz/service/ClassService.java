@@ -100,15 +100,6 @@ public class ClassService {
             }
         }
         ksession.fireAllRules();
-
-//        ksession.insert(new AbilityContainer("podklasa2", "Klasa"));
-//
-//        ksession.insert(new AbilityContainer("DEX", "podklasa1"));
-//        ksession.insert(new AbilityContainer("STR", "podklasa1"));
-//        ksession.insert(new AbilityContainer("INT", "podklasa2"));
-//        ksession.insert(new AbilityContainer("CHA", "podklasa2"));
-
-
         return abilityScores;
     }
 
