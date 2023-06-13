@@ -214,7 +214,7 @@ public class RoleService {
                 Double priority = r.getPriority() / (partyRoles.get(r).doubleValue() + 1 / partySize) ;
                 ret.put(r, priority);
             } else {
-                ret.put(r, 20.0);
+                ret.put(r, 5.0);
             }
         }
         return ret;

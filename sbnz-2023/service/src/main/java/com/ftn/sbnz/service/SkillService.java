@@ -79,7 +79,7 @@ public class SkillService {
                 Double priority = r.getPriority() / (partySkills.get(r).doubleValue() + 1 / party.size()) ;
                 ret.put(r, priority);
             } else {
-                ret.put(r, 100.0);
+                ret.put(r, 6.0);
             }
         }
         return ret;

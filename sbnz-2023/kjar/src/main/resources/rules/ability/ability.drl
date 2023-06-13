@@ -28,12 +28,12 @@ no-loop true
         isPartOf("DEXTERITY", "ARTIFICIER";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 13)};
+        modify($map){put(Ability.INTELLIGENCE, 15)};
+        modify($map){put(Ability.WISDOM, 12)};
+        modify($map){put(Ability.CHARISMA, 10)};
 end
 rule "is ARTIFICIER INT"
 no-loop true
@@ -41,12 +41,12 @@ no-loop true
         isPartOf("INTELLIGENCE", "ARTIFICIER";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 15)};
+        modify($map){put(Ability.WISDOM, 10)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 
 // barbarian strength
@@ -56,12 +56,12 @@ no-loop true
         isPartOf("STRENGTH", "BARBARIAN";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 15)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
+        modify($map){put(Ability.WISDOM, 10)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 
 // bard Dexterity, Charisma
@@ -71,12 +71,12 @@ no-loop true
         isPartOf("DEXTERITY", "BARD";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 13)};
+        modify($map){put(Ability.INTELLIGENCE, 12)};
         modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.CHARISMA, 15)};
 end
 rule "is BARD CHARISMA"
 no-loop true
@@ -84,12 +84,12 @@ no-loop true
         isPartOf("CHARISMA", "BARD";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
         modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.CHARISMA, 15)};
 end
 
 // CLERIC WISDOM, CHARISMA
@@ -99,12 +99,12 @@ no-loop true
         isPartOf("WISDOM", "CLERIC";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 14)};
+        modify($map){put(Ability.DEXTERITY, 10)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
+        modify($map){put(Ability.WISDOM, 15)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 rule "is CLERIC CHARISMA"
 no-loop true
@@ -112,12 +112,12 @@ no-loop true
         isPartOf("CHARISMA", "CLERIC";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 12)};
+        modify($map){put(Ability.INTELLIGENCE, 14)};
+        modify($map){put(Ability.WISDOM, 15)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 
 // DRUID WISDOM, CHARISMA
@@ -127,12 +127,12 @@ no-loop true
         isPartOf("WISDOM", "DRUID";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 12)};
+        modify($map){put(Ability.INTELLIGENCE, 14)};
+        modify($map){put(Ability.WISDOM, 15)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 rule "is DRUID INTELLIGENCE"
 no-loop true
@@ -140,12 +140,12 @@ no-loop true
         isPartOf("INTELLIGENCE", "DRUID";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
         modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.WISDOM, 15)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 
 // FIGHTER STRENGTH, CONSTITUTION
@@ -155,12 +155,12 @@ no-loop true
         isPartOf("STRENGTH", "FIGHTER";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 15)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 14)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
+        modify($map){put(Ability.WISDOM, 10)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 rule "is FIGHTER CONSTITUTION"
 no-loop true
@@ -168,12 +168,12 @@ no-loop true
         isPartOf("CONSTITUTION", "FIGHTER";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
+        modify($map){put(Ability.STRENGTH, 10)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
         modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.CHARISMA, 14)};
 end
 
 // MONK STRENGTH, DEXTERITY
@@ -183,12 +183,12 @@ no-loop true
         isPartOf("STRENGTH", "MONK";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
+        modify($map){put(Ability.WISDOM, 15)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 rule "is MONK DEXTERITY"
 no-loop true
@@ -196,12 +196,12 @@ no-loop true
         isPartOf("DEXTERITY", "MONK";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 10)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 14)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
+        modify($map){put(Ability.WISDOM, 15)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 
 // PALADIN WISDOM, CHARISMA
@@ -211,12 +211,12 @@ no-loop true
         isPartOf("WISDOM", "PALADIN";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
+        modify($map){put(Ability.STRENGTH, 12)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 14)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
         modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.CHARISMA, 14)};
 end
 rule "is PALADIN CHARISMA"
 no-loop true
@@ -224,12 +224,12 @@ no-loop true
         isPartOf("CHARISMA", "PALADIN";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
+        modify($map){put(Ability.STRENGTH, 15)};
+        modify($map){put(Ability.DEXTERITY, 8)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 18)};
         modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.CHARISMA, 15)};
 end
 
 // RANGER STRENGTH, DEXTERITY
@@ -239,12 +239,12 @@ no-loop true
         isPartOf("STRENGTH", "RANGER";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 12)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
+        modify($map){put(Ability.WISDOM, 15)};
+        modify($map){put(Ability.CHARISMA, 13)};
 end
 rule "is RANGER DEXTERITY"
 no-loop true
@@ -252,12 +252,12 @@ no-loop true
         isPartOf("DEXTERITY", "RANGER";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
         modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.WISDOM, 15)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 
 // ROGUE DEXTERITY, INTELLIGENCE
@@ -267,12 +267,12 @@ no-loop true
         isPartOf("DEXTERITY", "ROGUE";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
         modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.CHARISMA, 15)};
 end
 rule "is ROGUE INTELLIGENCE"
 no-loop true
@@ -280,12 +280,12 @@ no-loop true
         isPartOf("INTELLIGENCE", "ROGUE";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 14)};
+        modify($map){put(Ability.INTELLIGENCE, 15)};
+        modify($map){put(Ability.WISDOM, 10)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 
 // SORCERER CONSTITUTION, CHARISMA
@@ -295,12 +295,12 @@ no-loop true
         isPartOf("CONSTITUTION", "SORCERER";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 8)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
         modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.WISDOM, 14)};
+        modify($map){put(Ability.CHARISMA, 15)};
 end
 rule "is SORCERER CHARISMA"
 no-loop true
@@ -308,12 +308,12 @@ no-loop true
         isPartOf("CHARISMA", "SORCERER";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
+        modify($map){put(Ability.WISDOM, 10)};
+        modify($map){put(Ability.CHARISMA, 15)};
 end
 
 // WARLOCK WISDOM, CHARISMA
@@ -323,12 +323,12 @@ no-loop true
         isPartOf("WISDOM", "WARLOCK";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 14)};
         modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.WISDOM, 10)};
+        modify($map){put(Ability.CHARISMA, 15)};
 end
 rule "is WARLOCK CHARISMA"
 no-loop true
@@ -336,12 +336,12 @@ no-loop true
         isPartOf("CHARISMA", "WARLOCK";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 8)};
+        modify($map){put(Ability.WISDOM, 10)};
+        modify($map){put(Ability.CHARISMA, 15)};
 end
 
 // WIZARD INTELLIGENCE, WISDOM
@@ -351,12 +351,12 @@ no-loop true
         isPartOf("INTELLIGENCE", "WIZARD";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
-        modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 14)};
+        modify($map){put(Ability.CONSTITUTION, 14)};
+        modify($map){put(Ability.INTELLIGENCE, 15)};
+        modify($map){put(Ability.WISDOM, 12)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 rule "is WIZARD WISDOM"
 no-loop true
@@ -364,11 +364,11 @@ no-loop true
         isPartOf("WISDOM", "WIZARD";)
         $map: HashMap()
     then
-        modify($map){put(Ability.STRENGTH, 18)};
-        modify($map){put(Ability.DEXTERITY, 13)};
-        modify($map){put(Ability.CONSTITUTION, 17)};
-        modify($map){put(Ability.INTELLIGENCE, 10)};
+        modify($map){put(Ability.STRENGTH, 8)};
+        modify($map){put(Ability.DEXTERITY, 15)};
+        modify($map){put(Ability.CONSTITUTION, 15)};
+        modify($map){put(Ability.INTELLIGENCE, 15)};
         modify($map){put(Ability.WISDOM, 8)};
-        modify($map){put(Ability.CHARISMA, 9)};
+        modify($map){put(Ability.CHARISMA, 8)};
 end
 
