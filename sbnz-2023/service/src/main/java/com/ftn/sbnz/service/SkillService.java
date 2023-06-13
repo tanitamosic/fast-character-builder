@@ -1,8 +1,6 @@
 package com.ftn.sbnz.service;
 
 import com.ftn.sbnz.model.*;
-import org.drools.decisiontable.ExternalSpreadsheetCompiler;
-import org.drools.template.ObjectDataCompiler;
 import org.kie.api.builder.Message;
 import org.kie.api.builder.Results;
 import org.kie.api.io.ResourceType;
@@ -17,6 +15,22 @@ import java.util.*;
 public class SkillService {
     
     private ArrayList<CharClassModel> data;
+    private HashMap<CharClass, Integer> proficiencyCount = new HashMap<CharClass,Integer>(){{
+        put(CharClass.ARTIFICER, 4);
+        put(CharClass.BARBARIAN, 4);
+        put(CharClass.BARD, 5);
+        put(CharClass.CLERIC, 4);
+        put(CharClass.DRUID, 4);
+        put(CharClass.FIGHTER,4);
+        put(CharClass.MONK, 4);
+        put(CharClass.PALADIN, 4);
+        put(CharClass.RANGER, 5);
+        put(CharClass.ROGUE,6);
+        put(CharClass.SORCERER, 4);
+        put(CharClass.WARLOCK,4);
+        put(CharClass.WIZARD, 4);
+
+    }};
     public SkillService(){
         InputStream template = SkillService.class.getResourceAsStream("/class/party_skills.drt");
         data = new ArrayList<>();
@@ -148,8 +162,28 @@ public class SkillService {
         return ret;
     }
 
-    public ArrayList<Skill> filterSkills(HashMap<Skill, Double> neededSkills, CharClass charClass) {
-        return new ArrayList<>(neededSkills.keySet());
-        // TODO: get actual profs
+    public ArrayList<Skill> getProficiencies(HashMap<Skill, Double> neededSkills, CharClass charClass) {
+        ArrayList<Skill> ret = new ArrayList<>();
+        ArrayList<Skill> allowedSkills = getAllowedSkills(charClass);
+        // TODO: get background skills
+        for (Skill s : neededSkills.keySet()){
+            if (ret.containsAll(allowedSkills) ||
+                    ret.size()>=proficiencyCount.get(charClass)) return ret;
+            if (allowedSkills.contains(s))
+                if(ret.contains(s)){
+                    continue;
+                } else
+                    ret.add(s);
+        }
+        return ret;
+    }
+
+    private ArrayList<Skill> getAllowedSkills(CharClass charClass) {
+        ArrayList<Skill> ret = new ArrayList<>();
+        for(CharClassModel ccm : data){
+            if (ccm.charClass.equals(charClass.getEnumString()))
+                ret.addAll(parseSkillsString(ccm.proficiencies));
+        }
+        return ret;
     }
 }

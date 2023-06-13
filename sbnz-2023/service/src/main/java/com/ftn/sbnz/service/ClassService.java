@@ -59,9 +59,9 @@ public class ClassService {
         }
         for (Subclass r : cs.keySet()){
             if (candidates.containsKey(r)){
-                candidates.put(r, candidates.get(r)+cr.get(r));
+                candidates.put(r, candidates.get(r)+cs.get(r));
             } else{
-                candidates.put(r,cr.get(r));
+                candidates.put(r,cs.get(r));
             }
         }
         candidates.remove(Subclass.NO_SUBCLASS);
@@ -73,7 +73,7 @@ public class ClassService {
         CharClass charClass = subclass.getCharClass();
         ArrayList<Skill> proficiencies = getProficiencies(mock.members, charClass);
         HashMap<Ability, Integer> abilityScores = getAbilityScores(charClass, proficiencies);
-        return new CharSheet(charClass, subclass, proficiencies, abilityScores);
+        return new CharSheet(charClass, subclass, proficiencies, abilityScores, subclass.getDisplayName());
     }
 
     private HashMap<Ability, Integer> getAbilityScores(CharClass charClass, ArrayList<Skill> proficiencies) {
@@ -83,8 +83,7 @@ public class ClassService {
 
     private ArrayList<Skill> getProficiencies(ArrayList<PartyMemberDTO> members, CharClass charClass ) {
         HashMap<Skill, Double> neededSkills = skillService.getNeededSkills(members);
-        ArrayList<Skill> proficiencies = skillService.filterSkills(neededSkills, charClass);
-        return new ArrayList<Skill>(proficiencies);
+        return skillService.getProficiencies(neededSkills, charClass);
 
     }
 }
