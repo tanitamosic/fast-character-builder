@@ -20,13 +20,25 @@ public class ClassController {
 
     @PostMapping("/party")
     public ResponseEntity<String> postParty(@RequestBody PartyDTO dto){
-        ArrayList<PartyMemberDTO> party = new ArrayList<>();
-        party.add(new PartyMemberDTO(CharClass.BARBARIAN, Subclass.NO_SUBCLASS,
-                new ArrayList<Skill>(Arrays.asList(Skill.ATHLETICS, Skill.ACROBATICS, Skill.NATURE, Skill.INTIMIDATION))));
-        party.add(new PartyMemberDTO(CharClass.CLERIC, Subclass.TEMPEST,
-                new ArrayList<Skill>(Arrays.asList(Skill.MEDICINE, Skill.HISTORY, Skill.INSIGHT, Skill.RELIGION))));
-        classService.getCharClass(party);
+        PartyDTO mock = mockParty();
+        CharSheet charSheet = classService.getCharSheet(mock);
         return ResponseEntity.ok("sve ok");
+    }
+
+    private PartyDTO mockParty() {
+        PartyDTO party = new PartyDTO();
+        ArrayList<PartyMemberDTO> members = new ArrayList<>();
+        CampaignDTO camp = new CampaignDTO();
+        camp.magic = Amount.LOW;
+        camp.tech = Amount.MID;
+        camp.dark = Amount.FULL;
+        party.campaign = camp;
+        party.members = members;
+        members.add(new PartyMemberDTO(CharClass.BARBARIAN, Subclass.NO_SUBCLASS,
+                new ArrayList<Skill>(Arrays.asList(Skill.ATHLETICS, Skill.ACROBATICS, Skill.NATURE, Skill.INTIMIDATION))));
+        members.add(new PartyMemberDTO(CharClass.CLERIC, Subclass.TEMPEST,
+                new ArrayList<Skill>(Arrays.asList(Skill.MEDICINE, Skill.HISTORY, Skill.INSIGHT, Skill.RELIGION))));
+        return party;
     }
 
 }

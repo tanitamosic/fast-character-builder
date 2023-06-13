@@ -8,16 +8,15 @@ import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieSession;
 import org.kie.internal.utils.KieHelper;
 import com.ftn.sbnz.model.Subclass;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-
+@Service
 public class CampaignService {
 
     private KieSession kieSession;
@@ -29,67 +28,63 @@ public class CampaignService {
         InputStream template = new FileInputStream(file);
         data = new ArrayList<CampaignModel>();
 
-        data.add(new CampaignModel(Subclass.ALCHEMIST.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.ARTILLERIST.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.BEAST.getEnumString(), Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.BERSERKER.getEnumString(), Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.TOTEM_WARRIOR.getEnumString(), Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.ZEALOT.getEnumString(), Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.LORE.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.VALOR.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.GLAMOUR.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.LIFE.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString()));
-        data.add(new CampaignModel(Subclass.TEMPEST.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.WAR.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.KNOWLEDGE.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString()));
-        data.add(new CampaignModel(Subclass.MOON.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.LAND.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.DREAMS.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString()));
-        data.add(new CampaignModel(Subclass.CHAMPION.getEnumString(), Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.BATTLE_MASTER.getEnumString(), Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.ELDRICH_KNIGHT.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.DRUNKEN_MASTER.getEnumString(), Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.KENSEI.getEnumString(), Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.OPEN_HAND.getEnumString(), Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.ANCIENTS.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString()));
-        data.add(new CampaignModel(Subclass.DEVOTION.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString()));
-        data.add(new CampaignModel(Subclass.HUNTER.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.GLOOM.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString(), Amount.FULL.getEnumString()));
-        data.add(new CampaignModel(Subclass.HORIZON.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.ASSASSIN.getEnumString(), Amount.NONE.getEnumString(), Amount.MID.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.ARCANE_TRICKSTER.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.SWASHBUCKLER.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.THIEF.getEnumString(), Amount.NONE.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.DRACONIC.getEnumString(), Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.DIVINE_SOUL.getEnumString(), Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.SHADOW.getEnumString(), Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.WILD.getEnumString(), Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.ARCHFEY.getEnumString(), Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.FIEND.getEnumString(), Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.GREAT_OLD_ONE.getEnumString(), Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.EVOCATION.getEnumString(), Amount.HIGH.getEnumString(), Amount.HIGH.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.ABJURATION.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.CONJURATION.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.DIVINATION.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
-        data.add(new CampaignModel(Subclass.WAR_MAGIC.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.HIGH.getEnumString()));
-        data.add(new CampaignModel(Subclass.NECROMANCY.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.FULL.getEnumString()));
-
+        data.add(new CampaignModel(Subclass.ALCHEMIST, Amount.LOW.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.ARTILLERIST, Amount.LOW.getEnumString(), Amount.HIGH.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.BEAST, Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.BERSERKER, Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.TOTEM_WARRIOR, Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.ZEALOT, Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.LORE, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.VALOR, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.GLAMOUR, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.LIFE, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString()));
+        data.add(new CampaignModel(Subclass.TEMPEST, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.WAR, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.KNOWLEDGE, Amount.MID.getEnumString(), Amount.MID.getEnumString(), Amount.LOW.getEnumString()));
+        data.add(new CampaignModel(Subclass.MOON, Amount.LOW.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.LAND, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.DREAMS, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString()));
+        data.add(new CampaignModel(Subclass.CHAMPION, Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.BATTLE_MASTER, Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.ELDRICH_KNIGHT, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.DRUNKEN_MASTER, Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.KENSEI, Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.OPEN_HAND, Amount.NONE.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.ANCIENTS, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString()));
+        data.add(new CampaignModel(Subclass.DEVOTION, Amount.MID.getEnumString(), Amount.LOW.getEnumString(), Amount.LOW.getEnumString()));
+        data.add(new CampaignModel(Subclass.HUNTER, Amount.LOW.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.GLOOM, Amount.LOW.getEnumString(), Amount.LOW.getEnumString(), Amount.FULL.getEnumString()));
+        data.add(new CampaignModel(Subclass.HORIZON, Amount.LOW.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.ASSASSIN, Amount.NONE.getEnumString(), Amount.MID.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.ARCANE_TRICKSTER, Amount.MID.getEnumString(), Amount.MID.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.SWASHBUCKLER, Amount.LOW.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.THIEF, Amount.NONE.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.DRACONIC, Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.DIVINE_SOUL, Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.SHADOW, Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.WILD, Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.ARCHFEY, Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.FIEND, Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.GREAT_OLD_ONE, Amount.HIGH.getEnumString(), Amount.LOW.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.EVOCATION, Amount.HIGH.getEnumString(), Amount.HIGH.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.ABJURATION, Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.CONJURATION, Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.DIVINATION, Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.MID.getEnumString()));
+        data.add(new CampaignModel(Subclass.WAR_MAGIC, Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.HIGH.getEnumString()));
+        data.add(new CampaignModel(Subclass.NECROMANCY, Amount.HIGH.getEnumString(), Amount.MID.getEnumString(), Amount.FULL.getEnumString()));
         ObjectDataCompiler converter = new ObjectDataCompiler();
         String drl = converter.compile(data, template);
         System.out.println(drl);
 
         kieSession = createKieSessionFromDRL(drl);
-        kieSession.setGlobal("candidates", new ArrayList<Subclass>());
     }
 
-    public ArrayList<Subclass> filterCandidates(ArrayList<PartyMemberDTO> party) {
-        for (PartyMemberDTO member : party){
-            kieSession.insert(member);
-        }
+    public HashMap<Subclass, Double> filterCandidates(HashMap<Subclass, Double> candidates, CampaignDTO campaign) {
+        kieSession.insert(candidates);
+        kieSession.insert(campaign);
         kieSession.fireAllRules();
-        ArrayList<Subclass> candidates = (ArrayList<Subclass>) kieSession.getGlobal("candidates");
-
-        for(Subclass c : candidates){
+        System.out.println("\nfiltered");
+        for(Subclass c : candidates.keySet()){
             System.out.println(c.getDisplayName());
         }
         return candidates;

@@ -4,18 +4,24 @@ magicMin
 techIdeal
 darkIdeal
 
-package class
+import com.ftn.sbnz.model.CampaignDTO;
+import com.ftn.sbnz.model.Amount;
+import com.ftn.sbnz.model.Subclass;
+import java.util.HashMap;
 
-global ArrayList<Subclass> candidates;
 
 template "campaign"
 
 rule "Campaign Details Filter_@{row.rowNumber}"
 no-loop true
 when
-    $cd: CampaignDetailsModel(magic>@{magicMin}, abs(tech-@{techIdeal})<4, abs(dark-@{darkIdeal})<5)
+    $cd: CampaignDTO(@{magicMin}.greaterThan(magic), @{techIdeal}.getDif(tech)<3, @{darkIdeal}.getDif(dark)<2)
+    $cand: HashMap()
 then
-    candidates.remove(@{charClass})
+    if($cand.containsKey(Subclass.@{subclass})){
+        modify($cand){remove(Subclass.@{subclass})};
+    }
+    System.out.println("@{subclass}");
 end
 
 end template

@@ -1,9 +1,9 @@
 package com.ftn.sbnz.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class PartyDTO {
-    public List<PartyMemberDTO> partyMembers;
+    public ArrayList<PartyMemberDTO> members;
     public CampaignDTO campaign;
     public Integer level;
 

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +25,13 @@ public class CharSheet {
         this.background = background;
         this.race = race;
         this.charClass = charClass;
+    }
+
+    public CharSheet(CharClass charClass, Subclass subclass, ArrayList<Skill> proficiencies, HashMap<Ability, Integer> abilityScores){
+        this.charClass = charClass;
+        this.subclass = subclass;
+        this.proficiencies = proficiencies;
+        this.abilityScores = abilityScores;
     }
 
     

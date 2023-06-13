@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CampaignModel {
 
-    public String subclass;
+    public Subclass subclass;
     public String magicMin;
     public String techIdeal;
     public String darkIdeal;

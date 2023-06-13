@@ -65,7 +65,7 @@ public class SkillService {
                 Double priority = r.getPriority() / (partySkills.get(r).doubleValue() + 1 / party.size()) ;
                 ret.put(r, priority);
             } else {
-                ret.put(r, 20.0);
+                ret.put(r, 100.0);
             }
         }
         return ret;
@@ -146,5 +146,10 @@ public class SkillService {
             ret.add(role);
         }
         return ret;
+    }
+
+    public ArrayList<Skill> filterSkills(HashMap<Skill, Double> neededSkills, CharClass charClass) {
+        return new ArrayList<>(neededSkills.keySet());
+        // TODO: get actual profs
     }
 }
