@@ -46,7 +46,13 @@ public class ClassService {
         Double maxPiority = max(filteredCandidates.values());
         for(Subclass s : filteredCandidates.keySet()){
             if(Objects.equals(filteredCandidates.get(s), maxPiority))
-                return s;
+                if ((s.getCharClass().equals(CharClass.BARD) && new Random().nextBoolean()))
+                    return s;
+                else {
+                    Integer randInd = new Random().nextInt(filteredCandidates.keySet().size());
+                    Subclass rand = (Subclass) filteredCandidates.keySet().toArray()[randInd];
+                    return rand;
+                }
         }
         return null;
     }
