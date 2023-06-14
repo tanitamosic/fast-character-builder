@@ -351,7 +351,7 @@ no-loop true
 salience 450
     when
         $cs: CharSheet(race==Race.HALFLING || race==Race.HUMAN || race==Race.DWARF ||
-        race==Race.ELF || race==Race.HALF_ELF || race==Race.AASIMAR)
+        race==Race.ELF || race==Race.HALF_ELF || race==Race.AASIMAR || race==Race.GNOME)
         $skins: ArrayList()
     then
         modify($skins){add(Skintone.LIGHT)};
