@@ -141,7 +141,7 @@ interface RaceWrapper {
 export class HomeComponent implements OnInit {
 
   // GLOBALS
-  creationStarted = true;
+  creationStarted = false;
   charSheet: CharSheet = new CharSheet();
 
   backgroundParams: BackgroundParams = {wayOfLife: undefined, interest: undefined, path: undefined, integer: undefined}
@@ -332,7 +332,7 @@ export class HomeComponent implements OnInit {
     request.subscribe((res) => {
       console.log(res);
       const backgroundWrapper = res as BackgroundWrapper;
-      if (backgroundWrapper.charSheet.background !== undefined && backgroundWrapper.charSheet.background !== null) {
+      if (backgroundWrapper.charSheet.background != undefined) {
         this.charSheet.background = backgroundWrapper.charSheet.background;
         this.backgroundWrapper = backgroundWrapper;
         this.interestDisabled = true;
@@ -383,7 +383,10 @@ export class HomeComponent implements OnInit {
     request.subscribe((res) => {
       console.log(res);
       const raceWrapper = res as RaceWrapper;
-      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null) {
+      if (raceWrapper.raceParams.skintone != undefined) {
+        this.skinColor = raceWrapper.raceParams.skintone;
+      } 
+      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null && this.skinColor !== null) {
         this.charSheet.race = raceWrapper.charSheet.race;
       }
       this.fillDropdown(raceWrapper);
@@ -400,7 +403,7 @@ export class HomeComponent implements OnInit {
     request.subscribe((res) => {
       console.log(res);
       const raceWrapper = res as RaceWrapper;
-      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null) {
+      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null && this.skinColor !== null) {
         this.charSheet.race = raceWrapper.charSheet.race;
       }
       this.fillDropdown(raceWrapper);
@@ -418,7 +421,7 @@ export class HomeComponent implements OnInit {
     request.subscribe((res) => {
       console.log(res);
       const raceWrapper = res as RaceWrapper;
-      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null) {
+      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null && this.skinColor !== null) {
         this.charSheet.race = raceWrapper.charSheet.race;
       }
       this.fillDropdown(raceWrapper);
@@ -435,7 +438,10 @@ export class HomeComponent implements OnInit {
     request.subscribe((res) => {
       console.log(res);
       const raceWrapper = res as RaceWrapper;
-      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null) {
+      if (raceWrapper.raceParams.skintone != undefined) {
+        this.skinColor = raceWrapper.raceParams.skintone;
+      } 
+      if (raceWrapper.charSheet.race != undefined && this.skinColor !== null) {
         this.charSheet.race = raceWrapper.charSheet.race;
       }
       this.fillDropdown(raceWrapper);
@@ -452,7 +458,10 @@ export class HomeComponent implements OnInit {
     request.subscribe((res) => {
       console.log(res);
       const raceWrapper = res as RaceWrapper;
-      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null) {
+      if (raceWrapper.raceParams.skintone != undefined) {
+        this.skinColor = raceWrapper.raceParams.skintone;
+      } 
+      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null && this.skinColor !== null) {
         this.charSheet.race = raceWrapper.charSheet.race;
       }
       this.fillDropdown(raceWrapper);
