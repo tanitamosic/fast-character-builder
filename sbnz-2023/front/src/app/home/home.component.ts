@@ -175,8 +175,8 @@ export class HomeComponent implements OnInit {
   path: any;
 
   // CLASS
-  magicAmounts: Amount[] = [{name: 'Not at all', amount: 'NONE'}, {name: 'A little', amount: 'LOW'}, {name: 'A decent amount', amount: 'MID'}, {name: 'High magic', amount: 'HIGH'}, {name: 'Spellcasters only', amount: 'FULL'}]
-  technologyAmounts: Amount[] = [{name: 'Not at all', amount: 'NONE'}, {name: 'A little', amount: 'LOW'}, {name: 'A decent amount', amount: 'MID'}, {name: 'Modern', amount: 'HIGH'}, {name: 'Futuristic', amount: 'FULL'}]
+  magicAmounts: Amount[] = [{name: 'Not at all', amount: 'NONE'}, {name: 'A little', amount: 'LOW'}, {name: 'A decent amount', amount: 'MID'}, {name: 'Very', amount: 'HIGH'}, {name: 'Spellcasters all the way down', amount: 'FULL'}]
+  technologyAmounts: Amount[] = [{name: 'Not at all', amount: 'NONE'}, {name: 'Medieval', amount: 'LOW'}, {name: 'Industrial', amount: 'MID'}, {name: 'Modern', amount: 'HIGH'}, {name: 'Futuristic', amount: 'FULL'}]
   darkAmounts: Amount[] = [{name: 'Not at all', amount: 'NONE'}, {name: 'A little', amount: 'LOW'}, {name: 'A decent amount', amount: 'MID'}, {name: 'Very', amount: 'HIGH'}, {name: 'We are the bad guys', amount: 'FULL'}]
   partyLevels: PartyLevel[] = [{name: '1', level: 1}, {name: '2', level: 2}, {name: '3', level: 3}];
   magicAmount: any;
@@ -461,7 +461,7 @@ export class HomeComponent implements OnInit {
       if (raceWrapper.raceParams.skintone != undefined) {
         this.skinColor = raceWrapper.raceParams.skintone;
       } 
-      if (raceWrapper.charSheet.race !== undefined && raceWrapper.charSheet.race !== null && this.skinColor !== null) {
+      if (raceWrapper.charSheet.race != undefined && this.skinColor !== null) {
         this.charSheet.race = raceWrapper.charSheet.race;
       }
       this.fillDropdown(raceWrapper);

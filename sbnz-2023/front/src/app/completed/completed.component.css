@@ -24,6 +24,11 @@
   vertical-align: top; /* Align divs vertically at the top */
 }
 
+#image {
+  width: auto;
+  height: 150;
+}
+
 td {
   padding: 5px;
 }
