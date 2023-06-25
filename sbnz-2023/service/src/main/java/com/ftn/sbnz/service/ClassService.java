@@ -24,7 +24,7 @@ public class ClassService {
 
     private static final HashMap<String, List<String>> abilitySkills = new HashMap<>() {{
         put(Ability.STRENGTH.toString(), Arrays.asList(Skill.ATHLETICS.toString()));
-        put(Ability.DEXTERITY.toString(), Arrays.asList(Skill.ACROBATICS.toString(), Skill.SLEIGH_OF_HAND.toString(), Skill.STEALTH.toString()));
+        put(Ability.DEXTERITY.toString(), Arrays.asList(Skill.ACROBATICS.toString(), Skill.SLEIGHT_OF_HAND.toString(), Skill.STEALTH.toString()));
         put(Ability.INTELLIGENCE.toString(), Arrays.asList(Skill.ARCANA.toString(), Skill.HISTORY.toString(), Skill.INVESTIGATION.toString(),  Skill.NATURE.toString(), Skill.RELIGION.toString()));
         put(Ability.WISDOM.toString(), Arrays.asList(Skill.ANIMAL_HANDLING.toString(), Skill.INSIGHT.toString(), Skill.MEDICINE.toString(),  Skill.PERCEPTION.toString(), Skill.SURVIVAL.toString()));
         put(Ability.CHARISMA.toString(), Arrays.asList(Skill.DECEPTION.toString(), Skill.INTIMIDATION.toString(), Skill.PERFORMANCE.toString(),  Skill.PERSUASION.toString()));
